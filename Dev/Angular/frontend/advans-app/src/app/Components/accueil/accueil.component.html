@@ -1,0 +1,32 @@
+<div class="container-fluid bg-image">
+    <div class="header">
+         <img src="assets/CreditSquares_logo.png" alt="Logo" class="logo" >
+         <a href="https://www.credit-squares.io" target="_blank" class="actualite-button">Actualité</a>
+
+         
+     </div>
+     <div class="content">
+         <h1>Bienvenue !</h1>
+         <p class="color">Facilitez la gestion de vos <br> demandes de crédit avec notre <br> plateforme intuitive</p>
+     </div>
+ 
+     <div class="login-form">
+         <h2 class="login-title">Login</h2>
+         <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+             <div class="form-group">
+                 <label for="email">Adresse email:</label>
+                 <input type="email" [(ngModel)]="credentials.email" name="email" required>
+             </div>
+             <div class="form-group">
+                 <label for="password">Mot de passe:</label>
+                 <input type="password" [(ngModel)]="credentials.password" name="password" required>
+             </div>
+
+             <button type="submit" class="login-button-green mt-2" [disabled]="!loginForm.valid">Se connecter</button>
+             <div class="errorMessage" *ngIf="invalidLogin == true ">{{erreurLogin}} </div>
+
+             <a  routerLink="/reset-password">Mot de passe oublié ?</a>
+         </form>
+     </div>
+ 
+    </div>

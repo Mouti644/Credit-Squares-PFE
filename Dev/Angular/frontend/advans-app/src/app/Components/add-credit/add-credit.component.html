@@ -1,0 +1,57 @@
+<div class="container my-5">
+  <h1 class="mb-3">Ajouter un nouveau crédit</h1>
+
+  <div class="row">
+      <div class="col-6">
+          <form #form="ngForm" (ngSubmit)="addCredit()">
+              <div class="mb-3">
+                <label for="id" class="form-label">ID Client</label>
+                <input type="number" class="form-control" id="id" name="id" [(ngModel)]="addcreditrequest.id_Client" required>
+              </div>
+              <div class="mb-3">
+                  <label for="nom_CC" class="form-label">Nom CC</label>
+                  <input type="text" class="form-control" id="nom_CC" name="nom_CC" [(ngModel)]="addcreditrequest.nom_CC" required>
+              </div>
+              <div class="mb-3">
+                  <label for="nom" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="addcreditrequest.nom" required>
+              </div>
+              <div class="mb-3">
+                  <label for="montant" class="form-label">Montant</label>
+                  <input type="text" class="form-control" id="montant" name="montant" [(ngModel)]="addcreditrequest.montant" required>
+              </div>
+              <div class="mb-3">
+                  <label for="secteur" class="form-label">Secteur</label>
+                  <select class="form-select" id="secteur" name="secteur" [(ngModel)]="addcreditrequest.secteur" required>
+                      <option *ngFor="let secteur of secteurs" [value]="secteur">{{ secteur }}</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                  <label for="statut" class="form-label">Statut</label>
+                  <select class="form-select" id="statut" name="statut" [(ngModel)]="addcreditrequest.statut" required>
+                      <option *ngFor="let statut of statuts" [value]="statut">{{ statut }}</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                  <label for="date" class="form-label">Date</label>
+                  <input type="date" class="form-control" id="date" name="date" [(ngModel)]="addcreditrequest.date" required>
+              </div>
+              <div class="mb-3">
+                <label for="operation" class="form-label">Opération</label>
+                <select class="form-select" id="statut" name="statut" [(ngModel)]="addcreditrequest.operation" required>
+                    <option *ngFor="let operation of operations" [value]="operation">{{ operation }}</option>
+                </select>
+            </div>
+              <div class="mb-3">
+                  <label for="num_version" class="form-label">Numéro de version</label>
+                  <input type="number" class="form-control" id="num_version" name="num_version" [(ngModel)]="addcreditrequest.num_version" required>
+              </div>
+               
+              <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+
+      </div>
+
+  </div>
+
+</div>

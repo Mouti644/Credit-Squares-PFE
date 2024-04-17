@@ -1,0 +1,111 @@
+<div class="container my-5">
+    <h1 class="mb-3">Ajouter un nouveau Client</h1>
+  
+    <div class="row">
+        <div class="col-6">
+            <form #form="ngForm" (ngSubmit)="addClient()" >
+                <div class="mb-3">
+                    <label for="Agence" class="form-label">Agence</label>
+                    <input type="text" class="form-control" id="Agence" name="Agence" [(ngModel)]="addclientrequest.agence" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="Nom" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="Nom" name="Nom" [(ngModel)]="addclientrequest.nom" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="secteur_act" class="form-label">Secteur d'activite</label>
+                    <select class="form-select" id="secteur_act" name="secteur_act" [(ngModel)]="addclientrequest.secteur_activite" required>
+                        <option *ngFor="let Secteur_act of Secteur_acts " [value]="Secteur_act">{{ Secteur_act }}</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Sous_act" class="form-label">Sous activite</label>
+                    <select class="form-select" id="Sous_act" name="Sous_act" [(ngModel)]="addclientrequest.sous_activite" required>
+                        <option *ngFor="let sous_act of sous_acts " [value]="sous_act">{{ sous_act }}</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Activite" class="form-label">Activite</label>
+                    <select class="form-select" id="Activite" name="Activite" [(ngModel)]="addclientrequest.activite" required>
+                        <option *ngFor="let activite of activites " [value]="activite">{{ activite }}</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Situation_immo" class="form-label">Situation_immo</label>
+                    <select class="form-select" id="Situation_immo" name="Situation_immo" [(ngModel)]="addclientrequest.situation_immobiliere" required>
+                        <option *ngFor="let SitImm of SitImms " [value]="SitImm">{{ SitImm }}</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="montant" class="form-label">Numéro de téléphone</label>
+                    <input type="text" class="form-control" id="montant" name="montant" [(ngModel)]="addclientrequest.phone" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Type" class="form-label">Type</label>
+                    <select class="form-select" id="Type" name="Type" [(ngModel)]="addclientrequest.type" required>
+                        <option *ngFor="let Type of Types " [value]="Type">{{ Type }}</option>
+                    </select>
+                </div>
+                <div  *ngIf="addclientrequest.type === 'Personne Physique' ">
+                
+                <div class="mb-3">
+                    <label for="Prènom" class="form-label">Prènom</label>
+                    <input type="text" class="form-control" id="Prènom" name="Prènom" [(ngModel)]="addclientrequest.prenom" required>
+                </div>
+               
+                <div class="mb-3">
+                    <label for="Sex" class="form-label">Sex</label>
+                    <select class="form-select" id="Sex" name="Sex" [(ngModel)]="addclientrequest.sex" required>
+                        <option *ngFor="let Sex of Sexs " [value]="Sex">{{ Sex }}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="Situation_fam" class="form-label">Situation_fam</label>
+                    <select class="form-select" id="Situation_fam" name="Situation_fam" [(ngModel)]="addclientrequest.situation_familiale" required>
+                        <option *ngFor="let SitFam of SitFams " [value]="SitFam">{{ SitFam }}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="NombreEnf" class="form-label">Nombre d'enfants</label>
+                    <input type="number" class="form-control" id="NombreEnf" name="NombreEnf" [(ngModel)]="addclientrequest.nombre_enfants" required>
+                </div>
+
+            </div>
+
+
+                <div *ngIf="addclientrequest.type === 'Personne Morale' ">
+                <div class="mb-3">
+                    <label for="Sigle" class="form-label">Sigle</label>
+                    <select class="form-select" id="Sigle" name="Sigle" [(ngModel)]="addclientrequest.sigle" required>
+                        <option *ngFor="let sigle of sigles " [value]="sigle">{{ sigle }}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="Interlocuteur" class="form-label">Interlocuteur principal</label>
+                    <input type="text" class="form-control" id="Interlocuteur" name="Interlocuteur" [(ngModel)]="addclientrequest.interlocuteur_principal" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Rais_soc" class="form-label">Raison sociale</label>
+                    <select class="form-select" id="Rais_soc" name="Rais_soc" [(ngModel)]="addclientrequest.raison_sociale" required>
+                        <option *ngFor="let Rais_soc of Rais_socs " [value]="Rais_soc">{{ Rais_soc }}</option>
+                    </select>
+                </div>
+            </div>
+               
+                 
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+              </form>
+  
+        </div>
+  
+    </div>
+  
+  </div>

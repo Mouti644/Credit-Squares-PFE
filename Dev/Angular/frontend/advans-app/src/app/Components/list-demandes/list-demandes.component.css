@@ -1,0 +1,25 @@
+.logo {
+    margin-left: 1200px; /* Ajustez cette valeur selon vos besoins */
+    width: 200px;
+    margin-top: 30px;
+  }
+
+  css
+Copy code
+.logout {
+  margin-right: 1200px; /* Espacement à droite */
+}
+
+/* Styles spécifiques au bouton de déconnexion */
+.logout {
+  background-color: rgb(248, 41, 41); /* Couleur de fond verte */
+  border-color: rgb(248, 41, 41); /* Couleur de la bordure verte */
+}
+
+.logout:hover {
+  background-color: rgb(103, 6, 6); /* Couleur de fond lorsque survolé */
+  border-color: rgb(103, 6, 6);
+}
+table {
+  margin-top: 50px; /* Adjust this value as needed */
+}
