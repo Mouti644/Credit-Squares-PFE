@@ -1,0 +1,183 @@
+<div class="checklist-container">
+    <div class="main-content" style="margin-top: 20px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title" style="margin-left: 15px;"> <strong>Checklist</strong> </h4>
+                        </div>
+                        <div class="content" style="margin-top: 20px;">
+                            <form #form="ngForm" (ngSubmit)="addChecklist()">
+                                <div class="row">
+                                    <div class="col-md-5" style="margin-left: 15px;">
+                                
+                                    <label>Id Demande</label>
+                                    <input type="text" class="form-control" disabled id="iddemande" name="iddemande" [(ngModel)]="checklistequest.idDemande">
+                                
+                            </div>
+                            </div>
+                            <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                            <div class="row">
+                            <div class="col-md-5 me-3" style="margin-left: 15px;">
+                                <label for="verifPhotoClient" class="form-label required"> Vérification de la Photo du Client </label>
+                                <select class="form-select" id="verifPhotoClient" name="verifPhotoClient" [(ngModel)]="checklistequest.verifPhotoClient" [disabled]="!isStatutConvenable()" required>
+                                <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                </select>
+                            </div>
+                                
+                                    <div class="col-md-5">
+                                        <label for="verifIDClient" class="form-label required"> Vérification de l'Identifiant du Client </label>
+                                        <select class="form-select" id="verifIDClient" name="verifIDClient" [(ngModel)]="checklistequest.verifIDClient" [disabled]="!isStatutConvenable()" required>
+                                        <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+                                <div class="row">
+                                <div class="col-md-5 me-3" style="margin-left: 15px;">
+                                    <label for="verifLocalClient" class="form-label required"> Vérification de l'Adresse Locale du Client </label>
+                                    <select class="form-select" id="verifLocalClient" name="verifLocalClient" [(ngModel)]="checklistequest.verifLocalClient" [disabled]="!isStatutConvenable()" required>
+                                    <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                    </select>
+                                </div>
+                            
+                                
+                                
+                                
+                                    <div class="col-md-5">
+                                        <label for="verifClientPolitique" class="form-label required"> Vérification du Statut Politique du Client </label>
+                                        <select class="form-select" id="verifClientPolitique" name="verifClientPolitique" [(ngModel)]="checklistequest.verifClientPolitique" [disabled]="!isStatutConvenable()" required>
+                                        <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="row">
+                                    <div class="col-md-5 me-5" style="margin-left: 15px;">
+                                        <label for="verifAutorisationActivite" class="verifAutorisationActivite-label required"> Vérification de l'Autorisation d'Activité du Client </label>
+                                        <select class="form-select" id="verifPhotoClient" name="verifAutorisationActivite" [(ngModel)]="checklistequest.verifAutorisationActivite" [disabled]="!isStatutConvenable()" required>
+                                            <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                        </select>
+                                    </div>
+                                
+                                    <div class="col-md-5 me-5 adjusted-margin">
+                                        <label for="verifFicheClientSigne" class="form-label required"> Vérification de la Fiche du Client Signée </label>
+                                        <select class="form-select" id="verifFicheClientSigne" name="verifFicheClientSigne" [(ngModel)]="checklistequest.verifFicheClientSigne" [disabled]="!isStatutConvenable()" required>
+                                            <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="row">
+                                
+                                    <div class="col-md-5 me-3" style="margin-left: 15px;">
+                                        <label for="verifPhotoGarant" class="form-label required"> Vérification de la Photo du Garant </label>
+                                        <select class="form-select" id="verifPhotoGarant" name="verifPhotoGarant" [(ngModel)]="checklistequest.verifPhotoGarant" [disabled]="!isStatutConvenable()" required>
+                                        <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label for="verifIDGarant" class="form-label required"> Vérification de l'Identifiant du Garant</label>
+                                        <select class="form-select" id="verifIDGarant" name="verifIDGarant" [(ngModel)]="checklistequest.verifIDGarant" [disabled]="!isStatutConvenable()" required>
+                                        <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="row">
+                                <div class="col-md-5 me-3" style="margin-left: 15px;">
+                                    <label for="verifFormDemandeSigne" class="form-label required"> Vérification de la Forme de Demande Signée </label>
+                                    <select class="form-select" id="verifFormDemandeSigne" name="verifFormDemandeSigne" [(ngModel)]="checklistequest.verifFormDemandeSigne" [disabled]="!isStatutConvenable()" required>
+                                    <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                    </select>
+                                </div>
+                            
+                            
+                            
+                                <div class="col-md-5">
+                                    <label for="verifContratCreditSigne" class="form-label required"> Vérification du Contrat de Crédit Signé </label>
+                                    <select class="form-select" id="verifContratCreditSigne" name="verifContratCreditSigne" [(ngModel)]="checklistequest.verifContratCreditSigne" [disabled]="!isStatutConvenable()" required>
+                                    <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                            <div class="row">
+                            <div class="col-md-5 me-3" style="margin-left: 15px;">
+                                <label for="verifContratGarantieSigne" class="form-label required"> Vérification du Contrat de Garantie Signé </label>
+                                <select class="form-select" id="verifContratGarantieSigne" name="verifContratGarantieSigne" [(ngModel)]="checklistequest.verifContratGarantieSigne" [disabled]="!isStatutConvenable()" required>
+                                <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                </select>
+                            </div>
+                                    <div class="col-md-5">
+                                        <label for="verifFicheGarantSigne" class="form-label required"> Vérification de la Fiche du Garant Signée </label>
+                                        <select class="form-select" id="verifFicheGarantSigne" name="verifFicheGarantSigne" [(ngModel)]="checklistequest.verifFicheGarantSigne" [disabled]="!isStatutConvenable()" required>
+                                        <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+                                <div class="row">
+                                
+                                    <div class="col-md-5" style="margin-left: 15px;"> 
+                                        <label for="verifConditionsGenSigne" class="form-label required"> Vérification des Conditions Générales  </label>
+                                        <select class="form-select" id="verifConditionsGenSigne" name="verifConditionsGenSigne" [(ngModel)]="checklistequest.verifConditionsGenSigne" [disabled]="!isStatutConvenable()" required>
+                                        <option *ngFor="let bool of bools" [value]="bool">{{ bool }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info btn-fill" style="margin-left: 15px;" [disabled]="!isStatutConvenable()">Enregistrer</button>
+                                    
+                                  </div>
+                                  <div class="alert alert-success" *ngIf="successMessage">{{ successMessage }}</div>
+                                <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                            </form>
+                        
+                            <div class="clearfix"></div>
+                  
+                        </div>
+                    </div>
+                </div>
+    
+                
+    
+                <div class="col-md-4" style="margin-top: 20px;">
+                    <div class="col-md-4">
+                        <div class="card border-primary mb-3" style="width: 390px;">
+                            <div class="card-header" style="background-color: #b98137; color: white;">
+                                <h4 *ngIf="demanded && demanded.typeClient === 'Client Particulier'" class="title text-center">
+                                    Les informations du <a [routerLink]="['/nav/edit-client', demanded.idClientParticulier]" style="color: white;">client</a>
+                                </h4>
+                                <h4 *ngIf="demanded && demanded.typeClient === 'Client Entreprise'" class="title text-center">
+                                    Les informations du <a [routerLink]="['/nav/edit-clientEntreprise', demanded.idClientEntreprise]" style="color: white;">client</a>
+                                </h4>
+                            </div>
+                            <div class="card-body text-primary">
+                                <div *ngIf="demanded" class="title text-center" style="margin-bottom: 20px;">
+                                    <p class="card-text"><strong>Nom du Client:</strong> {{ demanded.nomClient }}</p>
+                                    <p class="card-text"><strong>Type du Client:</strong> {{ demanded.typeClient }}</p>
+                                    <p class="card-text"><strong>Identité Client:</strong> {{ demanded.identiteClient }}</p>
+                                    <p class="card-text"><strong>Nom Agence:</strong> {{ demanded.nomAgence }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-end" >
+                    <button type="button" class="btn btn-success" (click)="updatestatut(checklistequest.idDemande, 'Analyse risque')" [disabled]="!isStatutConvenable()" >Valider</button>
+
+                </div>
+        </div>
+    </div>
+</div>

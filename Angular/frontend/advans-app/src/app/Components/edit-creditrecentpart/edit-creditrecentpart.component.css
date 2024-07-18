@@ -1,0 +1,60 @@
+
+.editcreditrecent-container {
+    max-width: 3000px; /* Ajustez selon vos besoins */
+    margin: 0 auto; /* Centrer le contenu horizontalement */
+    padding: 20px; /* Ajoutez un peu d'espace autour du contenu */
+    color:black;
+    background-color: #ffffff;
+  }
+
+  form {
+    width: 100%;
+    
+    padding: 20px;
+    background: hsl(34,44%,69%);
+    border-radius: 10px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    flex: 1; /* Pour que les boutons prennent une largeur égale */
+  margin-right: 10px; /* Ajoute une marge entre les boutons */
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: space-between;
+  }
+  
+  
+  .col-lg-4, .col-lg-8 {
+    flex: 0 0 50%; /* Divise l'espace en deux colonnes */
+  }
+  
+  /* Pour réduire la taille du tableau */
+  .table {
+    width: 100%; /* Pour s'adapter à la largeur du conteneur parent */
+    margin-bottom: 0; /* Supprime la marge par défaut du tableau */
+  }
+  
+  .custom-heading-right {
+    text-align: right;
+    color: rgb(5, 5, 5);
+    margin-right: 16rem;
+  
+  }
+  
+  
+  .container {
+    position: relative;
+  }
+  
+  .form-container {
+    margin-top: 50px; /* Ajustez cette valeur selon vos besoins */
+  }

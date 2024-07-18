@@ -1,0 +1,37 @@
+<div class="edit-container">
+    <div class="row">
+        <!-- Formulaire pour les Garanties -->
+        <div class="col-lg-6" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Ventes</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="updateVente()">
+                        <div class="mb-3">
+                            <label for="frequence" class="form-label">Fréquence</label>
+                            <select class="form-select" id="frequence" name="frequence" [(ngModel)]="addVenterequest.frequence" required>
+                                <option *ngFor="let frequence of frequences" [value]="frequence">{{ frequence }}</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="deviseCompte" class="form-label">Valeur Moyenne</label>
+                            <input type="number" class="form-control" id="deviseCompte" name="deviseCompte" [(ngModel)]="addVenterequest.valeurMoyenne" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="deviseCompte" class="form-label">Valeur Basse</label>
+                            <input type="number" class="form-control" id="deviseCompte" name="deviseCompte" [(ngModel)]="addVenterequest.valeurBasse" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="deviseCompte" class="form-label">Valeur Haute</label>
+                            <input type="number" class="form-control" id="deviseCompte" name="deviseCompte" [(ngModel)]="addVenterequest.valeurHaute" required>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <button type="button" class="btn btn-danger" (click)="deleteVente(addVenterequest.idvente)">Supprimer</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

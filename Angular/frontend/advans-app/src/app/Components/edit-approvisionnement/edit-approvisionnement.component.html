@@ -1,0 +1,29 @@
+<div class="edit-container">
+    <div class="row">
+        <!-- Formulaire pour les Garanties -->
+        <div class="col-lg-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Approvisionnements</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="updateAppro()">
+                            <div class="mb-3">
+                                <label for="frequencee" class="form-label">Fréquence</label>
+                                <select class="form-select" id="frequencee" name="frequencee" [(ngModel)]="addApprorequest.frequence" required>
+                                    <option *ngFor="let frequence of frequences" [value]="frequence">{{ frequence }}</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="montantMoyen" class="form-label">Montant Moyen</label>
+                                <input type="number" class="form-control" id="montantMoyen" name="montantMoyen" [(ngModel)]="addApprorequest.montantMoyen" required>
+                            </div>
+                       
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <button type="button" class="btn btn-danger" (click)="deleteAppro(addApprorequest.idAppro)">Supprimer</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

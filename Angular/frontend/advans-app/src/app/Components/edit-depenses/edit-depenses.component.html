@@ -1,0 +1,27 @@
+<div class="edit-container">
+    <div class="row">
+       
+        <div class="col-lg-4 mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Dépenses</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="updateDepenses()">
+                            <div class="mb-3">
+                                <label for="depenses" class="form-label">Dépenses</label>
+                                <input type="text" class="form-control" id="depenses" name="depenses" [(ngModel)]="addDepenserequest.depenses" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="coutTotal" class="form-label">Coût Total</label>
+                                <input type="text" class="form-control" id="coutTotal" name="coutTotal" [(ngModel)]="addDepenserequest.coutTotal" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            <button type="button" class="btn btn-danger" (click)="deleteDepenses(addDepenserequest.idDepense)">Supprimer</button>
+                        </form>
+                        <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

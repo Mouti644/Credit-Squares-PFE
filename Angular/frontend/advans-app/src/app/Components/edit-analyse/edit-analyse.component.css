@@ -1,0 +1,17 @@
+.analyse-container {
+    max-width: 5000px; /* Ajustez selon vos besoins */
+    margin: 0 auto; /* Centrer le contenu horizontalement */
+    padding: 20px; /* Ajoutez un peu d'espace autour du contenu */
+    color:black;
+    background-color: #ffffff;
+  }
+
+  .table{
+    width: 500px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Ajout d'un shadow au tableau */
+  }
+
+  .required::after {
+    content: " *";
+    color: red;
+}

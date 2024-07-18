@@ -1,0 +1,145 @@
+<div class="container my-5 row ">
+    
+    <div class="col-6">
+      <h2 class="custom-heading-right"><strong>Nouveau Client Particulier</strong></h2>
+        <form #form="ngForm" (ngSubmit)="addClientParticulier()">
+
+            <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="Nom" class="form-label required"><strong>Nom</strong></label>
+                    <input type="text" class="form-control" id="Nom" name="Nom" [(ngModel)]="addClientParticulierRequest.nom" required>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="Prenom" class="form-label required"><strong>Prénom</strong></label>
+                    <input type="text" class="form-control" id="Prenom" name="Prenom" [(ngModel)]="addClientParticulierRequest.prenom" required>
+                  </div>
+                </div>
+
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="Genre" class="form-label required"><strong>Genre</strong></label>
+                        <select class="form-select" id="Genre" name="Genre" [(ngModel)]="addClientParticulierRequest.sex" required>
+                        <option *ngFor="let sex of sexs" [value]="sex">{{ sex }}</option>
+                        </select>
+                    </div>
+                </div>    
+                <div class="col">
+                    <div class="mb-3">
+                         <label for="dateNaissance" class="form-label required"><strong>Date de naissance</strong></label>
+                         <input type="date" class="form-control a" id="dateNaissance" name="dateNaissance" [(ngModel)]="addClientParticulierRequest.dateNaissance" required>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="mb-3">
+                      <label for="Telephone" class="form-label required"><strong>Téléphone</strong></label>
+                      <input type="text" class="form-control" id="Telephone" name="Telephone" [(ngModel)]="addClientParticulierRequest.telephone" required>
+                    </div>
+                  </div>
+              </div>
+            
+              <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="sitimm" class="form-label required"><strong>Situation immobilière</strong></label>
+                        <select class="form-select" id="sitimm" name="sitimm" [(ngModel)]="selectedSitImmId" (change)="onSituationImmobilierSelected()" required>
+                            <option *ngFor="let situatioimm of situationsImmobilier" [value]="situatioimm.idSituationImmobilierParticulier">{{ situatioimm.situation }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                        <div class="mb-3">
+                            <label for="sitFam" class="form-label required"><strong>Situation Familiale</strong></label>
+                            <select class="form-select" id="sitFam" name="sitFam" [(ngModel)]="selectedSitFamId" (change)="onSituationFamilialeSelected()" required>
+                                <option *ngFor="let situaionFam of situationsFamiliale" [value]="situaionFam.idSituationFamilialeParticulier">{{ situaionFam.situation }}</option>
+                            </select>
+                        </div>
+                </div>
+                    
+            </div>
+
+        <div class="row">
+            <div class="col">
+            <div class="mb-3">
+                <label for="Identite" class="form-label required"><strong>Identité Client</strong></label>
+                <input type="text" class="form-control" id="Identite" name="Identite" [(ngModel)]="addClientParticulierRequest.identiteClient" required>
+            </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="ville" class="form-label required"><strong>Ville</strong></label>
+                    <input type="text" class="form-control" id="ville" name="ville" [(ngModel)]="addClientParticulierRequest.ville" required>
+                </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="type" class="form-label required"><strong>Agence</strong></label>
+                        <select class="form-select" id="Agence" name="Agence" [(ngModel)]="selectedAgenceId" (change)="onAgenceSelected()" required>
+                            <option *ngFor="let agence of agences" [value]="agence.idAgence">{{ agence.nomAgence }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="Prenom" class="form-label required"><strong>Gestionnaire</strong></label>
+                        <input type="text" class="form-control" id="Gestionnaire" name="Gestionnaire" [(ngModel)]="addClientParticulierRequest.gestionnaire" required>
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="secteur" class="form-label required"><strong>Secteur d'activité</strong></label>
+                    <select class="form-select" id="secteur" name="secteur" [(ngModel)]="selectedSecteurActiviteId" (change)="onSecteurActiviteSelected()" required>
+                        <option *ngFor="let secteur of secteursActivite" [value]="secteur.idSecteurActivite">{{ secteur.nomSecteur }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="activite" class="form-label required"><strong>Activité</strong></label>
+                    <select class="form-select" id="activite" name="activite" [(ngModel)]="selectedActiviteId" (change)="onActiviteSelected()" required>
+                        <option *ngFor="let act of activite" [value]="act.idActivite">{{ act.nomActivite }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="sousAct" class="form-label required"><strong>Sous Activité</strong></label>
+                    <select class="form-select" id="sousAct" name="sousAct" [(ngModel)]="selectedSousActiviteId" (change)="onSousActiviteSelected()" required>
+                        <option *ngFor="let sousAct of sousActivite" [value]="sousAct.idSousActivite">{{ sousAct.nomSousActivite }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+
+                <div class="mb-3">
+                    <label for="Fonction" class="form-label required"><strong>Fonction Professionnelle</strong></label>
+                    <input type="text" class="form-control" id="Fonction" name="Fonction" [(ngModel)]="addClientParticulierRequest.fonctionProfessionnelle" required>
+                </div>
+            </div>
+
+            <div class="col">
+
+                <div class="mb-3">
+                    <label for="salaire" class="form-label required"><strong>Salaire Net Mensuel</strong></label>
+                    <input type="text" class="form-control" id="salaire" name="salaire" [(ngModel)]="addClientParticulierRequest.salaireNetMensuel" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-end">
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <div class="alert alert-danger err" *ngIf="errorMessage">{{ errorMessage }}</div>
+        </div>
+          </form>
+          
+
+    </div>
+
+</div>

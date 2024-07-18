@@ -1,0 +1,56 @@
+.dashboard-container {
+    max-width: 3000px; /* Ajustez selon vos besoins */
+    margin: 0 auto; /* Centrer le contenu horizontalement */
+    padding: 20px; /* Ajoutez un peu d'espace autour du contenu */
+    color:black;
+    background-color: #ffffff;
+  }
+
+
+  .chart-container {
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.custom-table {
+  background-color: #ffffff; /* Background blanc du tableau */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Ajout d'un shadow au tableau */
+  color: #000000;
+  font-size: 12px; /* Réduire la taille de la police */
+ 
+  display: block; /* Ajouter cette ligne */
+}
+
+.custom-table th, .custom-table td {
+  color: #000000; /* Texte en noir */
+  padding: 4px 8px; /* Réduire le padding des cellules */
+}
+
+.custom-table th {
+  background-color: #f7f7f7; /* Background des entêtes de colonne en gris clair */
+}
+
+.custom-table td {
+  border-bottom: 1px solid #dddddd; /* Bordure inférieure des cellules en gris clair */
+}
+.custom-paginator {
+  background-color: #c7a945; /* Background blanc du tableau */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Ajout d'un shadow au tableau */
+  color: #f1eeee;
+  width: 550px;
+}
+
+.table-container {
+  width: 550px;
+  overflow-x: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Ajout d'un shadow au tableau */
+}
+
+
+
+.totale{
+  width: 380px;
+}

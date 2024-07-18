@@ -1,0 +1,28 @@
+.rechercheClient-container {
+  max-width: 3000px; /* Ajustez selon vos besoins */
+  margin: 0 auto; /* Centrer le contenu horizontalement */
+  padding: 20px; /* Ajoutez un peu d'espace autour du contenu */
+  color: black;
+  background-color: #ffffff;
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-start; /* Alignement à gauche */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-container input {
+  margin-right: 10px; /* Espace entre l'input et le bouton */
+}
+
+.recherche-input {
+  width: 300px; /* Largeur de l'input */
+}
+
+.search-label {
+  margin-right: 20px; /* Espace entre le label et l'input */
+  font-weight: bold; /* Optionnel : pour faire ressortir le label */
+}
+

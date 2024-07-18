@@ -1,0 +1,12 @@
+.visiteManagement-container {
+    max-width: 3000px; /* Ajustez selon vos besoins */
+    margin: 0 auto; /* Centrer le contenu horizontalement */
+    padding: 20px; /* Ajoutez un peu d'espace autour du contenu */
+    color:black;
+    background-color: #ffffff;
+  }
+
+  .required::after {
+    content: " *";
+    color: red;
+}

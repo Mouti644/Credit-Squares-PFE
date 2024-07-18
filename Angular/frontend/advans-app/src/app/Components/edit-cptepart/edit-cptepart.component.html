@@ -1,0 +1,29 @@
+<div class="editcptpart-container">
+    <div class="row">
+        <!-- Formulaire pour les Garanties -->
+        <div class="col-lg-6" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Comptes Particuliers</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="Updatecomptepart()">
+                        <div class="mb-3">
+                            <label for="dateOuvertureCompte" class="form-label">Date d'ouverture du compte</label>
+                            <input type="date" class="form-control" id="dateOuvertureCompte" name="dateOuvertureCompte" [(ngModel)]="addcompteParticulierrequest.dateOuvertureCompte" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="deviseCompte" class="form-label">Devise du compte</label>
+                            <input type="text" class="form-control" id="deviseCompte" name="deviseCompte" [(ngModel)]="addcompteParticulierrequest.deviseCompte" required>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <button type="button" class="btn btn-danger" (click)="deletecomptepart(addcompteParticulierrequest.idCompteParticulier!)">Supprimer le Référent</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

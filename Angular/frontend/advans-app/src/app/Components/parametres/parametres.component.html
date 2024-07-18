@@ -1,0 +1,45 @@
+<div class="maps-container">
+  <div class="container">
+    <div class="row">
+      <div class="row">
+          <div class="col-12" style="margin-bottom: 20px;">
+              <button type="button" class="btn btn-primary" style="margin-right: 50px;">Produits</button>
+              <button type="button" class="btn btn-secondary" routerLink="/nav/agences">Agences</button>
+          </div>
+        </div>
+      <!-- Formulaire pour ajouter un produit -->
+      <div class="col-lg-4 mt-3 form-shadow"> <!-- Ajout de la classe 'form-shadow' -->
+        
+        <form #form="ngForm" (ngSubmit)="addProduit()">
+          
+          <div class="mb-3">
+            <label for="Identit" class="form-label"><strong>Ajouter un Produit</strong></label>
+            <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+            <input type="text" class="form-control" id="Identit" name="DureIdentite" [(ngModel)]="addProduitrequest.nomProduit" required>
+          </div>
+          <div style="margin-bottom: 30px;"></div> <!-- Add vertical spacing -->
+          <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
+        <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+      </div>
+
+      <!-- Tableau pour les Produits -->
+      <div class="col-lg-8 mt-3">
+        <table class="table table-shadow">
+          <thead>
+            <tr>
+              <th>Nom du produit</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let produit of produit">
+              <td>{{produit.nomProduit}}</td>
+              <td><a [routerLink]="['/nav/edit-produit/']" (click)="editProduit(produit)">Modifier</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

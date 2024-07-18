@@ -1,0 +1,121 @@
+<div class="edit-demandes-container">
+        <div class="main-content" style="margin-top: 20px;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title" style="margin-left: 15px;"><strong>Détails sur la demande</strong></h4>
+                            </div>
+                            <div class="content" style="margin-top: 20px;">
+                                <form #form="ngForm" (ngSubmit)="updateCredit()">
+                                    <div class="row">
+                                        <div class="col-md-5" style="margin-left: 15px;">
+                                            <div class="form-group">
+                                                <label>Id Demande</label>
+                                                <input type="text" class="form-control" disabled  id="id" name="id" [(ngModel)]="editcreditrequest.idDemande">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                            
+                                                <label>Statut</label>
+                                                <select class="form-select" id="Agence" name="Agence" [(ngModel)]="editcreditrequest.statut" required>
+                                                <option *ngFor="let statut of statuts" [value]="statut">{{ statut }}</option>
+                                                </select>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                        <div class="form-group" style="margin-left: 15px;">
+                                            <label>Montant</label>
+                                            <input type="number" class="form-control" id="montant" name="montant" [(ngModel)]="editcreditrequest.montant">
+                                        </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Disponibilité</label>
+                                            <input type="text" class="form-control" id="disponibilite" name="disponibilite" [(ngModel)]="editcreditrequest.disponibilite">
+                                        </div>
+                                        </div>  
+
+
+                                    </div>    
+                                    <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                        <div class="form-group" style="margin-left: 15px;">
+                                            <label>Durée demandée</label>
+                                            <input type="number" class="form-control" id="dureeDemandee" name="dureeDemandee" [(ngModel)]="editcreditrequest.dureeDemandee">
+                                        </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Commentaires</label>
+                                            <input type="number" class="form-control" id="commentaires" name="commentaires" [(ngModel)]="editcreditrequest.commentaires">
+                                        </div>
+                                        </div>  
+
+
+                                    </div>    
+                                    <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+                                    <button type="button" class="btn btn-light mx-1" (click)="redirigerVersAjoutTabsDemande()">Gestion des Ressources</button>
+                                    <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-info btn-fill pull-right">Mettre à jour la demande</button>
+                                            <button type="button" class="btn btn-danger" (click)="deleteDemande(editcreditrequest.idDemande!)">Supprimer la demande</button>
+                                        </div>
+                                      </div>
+                                </form>
+                                
+                     
+                  
+                      
+                      
+                      <div class="clearfix"></div>
+        
+                            </div>
+                        </div>
+                    </div>
+        
+                    
+    
+
+                    <div class="col-md-4" style="margin-top: 20px;">
+                        <div class="col-md-4" >
+                            <div class="card card-user" style="width: 380px; height: 300px ;margin: 0 auto;">
+            
+                                <div class="content">
+                                    <div class="author">
+                                        <a>
+                                            <h4 class="title text-center">Des informations sur le client<br />
+                                                
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    
+                                </div>
+                                <hr>
+                                <div *ngIf="editcreditrequest" class="title text-center">
+                                                    
+                                    <p><strong>Nom Client:</strong> {{ editcreditrequest.nomClient }}</p>
+                                    
+                                   
+                                    <p><strong>Identité Client:</strong> {{ editcreditrequest.identiteClient }}</p>
+                                    <p><strong>Nom Agence:</strong> {{  editcreditrequest.nomAgence }}</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+</div>
+

@@ -1,0 +1,39 @@
+<div class="editAgence-container">
+
+     <!-- Formulaire et tableau pour les Garanties -->
+     <div class="row">
+        <!-- Formulaire pour les Garanties -->
+        <div class="col-lg-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Agence</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="updateAgence()">
+                        <div class="mb-3">
+                            <label for="nomAgence" class="form-label">Nom e l'Agecne</label>
+                            <input type="text" class="form-control" id="nomAgence" name="nomAgence" [(ngModel)]="editAgencerequest.nomAgence" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="region" class="form-label">Région</label>
+                            <input type="text" class="form-control" id="region" name="region" [(ngModel)]="editAgencerequest.region" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telephone" class="form-label">Téléphone</label>
+                            <input type="text" class="form-control" id="telephone" name="telephone" [(ngModel)]="editAgencerequest.telephone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="adresse" class="form-label">Adresse</label>
+                            <input type="text" class="form-control" id="adresse" name="adresse" [(ngModel)]="editAgencerequest.adresse" required>
+                        </div>
+                        
+                       
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <button type="button" class="btn btn-danger float-end" (click)="deleteAgence(editAgencerequest.idAgence!)">Supprimer l'Agence</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+</div>

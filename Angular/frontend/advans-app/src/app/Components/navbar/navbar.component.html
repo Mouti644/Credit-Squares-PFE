@@ -1,0 +1,12 @@
+<!-- navbar.component.html -->
+<nav class="navbar" *ngIf="isUserAuthenticated()">
+    <div class="navbar-left">
+      <span>Bienvenue <br> {{userName}}</span>
+    </div>
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <button *ngIf="isUserAuthenticated()" class="btn btn-success logout" (click)="logOut()"> Déconnexion</button>
+      </li>
+    </ul>
+  </nav>
+  

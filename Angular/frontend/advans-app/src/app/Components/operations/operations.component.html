@@ -1,0 +1,127 @@
+<div class="operations-container">
+    <h1 class="text-center"><strong>Opérations</strong></h1>
+
+
+    <div class="row">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="assets/AnalyseIllustrator.jpg" class="card-img-top" alt="Image 1">
+            <div class="card-body">
+              <h5 class="card-title"><strong>Analyse</strong></h5>
+              <p class="card-text">Permet aux utilisateurs de passer en revue et d'analyser les demandes de crédit soumises pour évaluer leur viabilité et leur conformité aux critères établis.</p>
+              
+              <p class="text-center" *ngIf="!analyseExists">
+                <a [routerLink]="['/nav/analyse', iddemande]" style="color: #3CAB90;">
+                    <strong>Accéder</strong> <span>&rarr;</span>
+                </a>
+            </p>
+            <p class="text-center" *ngIf="analyseExists">
+                <a [routerLink]="['/nav/edit-analyse', iddemande]" style="color: #3CAB90;">
+                    <strong>Accéder</strong> <span>&rarr;</span>
+                </a>
+            </p>
+            
+
+            </div>
+          </div>
+        </div>
+        <!-- Répétez cette structure pour les deux autres cartes -->
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="assets/CheckListIllustrator.jpg" class="card-img-top" alt="Image 2">
+            <div class="card-body">
+              <h5 class="card-title"><strong>CheckList</strong></h5>
+              <p class="card-text">Fournit une liste de contrôle structurée</p>
+              <div style="margin-bottom: 70px;"></div> <!-- Add vertical spacing -->
+              
+              <p class="text-center" *ngIf="!checklistExists">
+                <a [routerLink]="['/nav/checklist', iddemande]" style="color: #3CAB90;">
+                    <strong>Accéder</strong> <span>&rarr;</span>
+                </a>
+            </p>
+            <p class="text-center" *ngIf="checklistExists">
+                <a [routerLink]="['/nav/edit-checklist', iddemande]" style="color: #3CAB90;">
+                    <strong>Accéder</strong> <span>&rarr;</span>
+                </a>
+            </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="assets/ARillustrator.png" class="card-img-top" alt="Image 3">
+            <div class="card-body">
+              <h5 class="card-title"><strong>Risque Analyse</strong></h5>
+              <p class="card-text">Identifie et évalue les risques associés à chaque demande de crédit, ce qui aide à prendre des décisions</p>
+              <div style="margin-bottom: 30px;"></div> <!-- Add vertical spacing -->
+              
+              <p class="text-center" *ngIf="!checkRAExists">
+                <a [routerLink]="['/nav/risqueAnalyse', iddemande]" style="color: #3CAB90;">
+                    <strong>Accéder</strong> <span>&rarr;</span>
+                </a>
+            </p>
+            <p class="text-center" *ngIf="checkRAExists">
+                <a [routerLink]="['/nav/edit-risqueAnalyse', iddemande]" style="color: #3CAB90;">
+                    <strong>Accéder</strong> <span>&rarr;</span>
+                </a>
+            </p>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+        <div class="card h-100">
+          <img src="assets/ComiteIllustrator.jpg" class="card-img-top" alt="Image 2">
+          <div class="card-body">
+            <h5 class="card-title"><strong>Comité Crédit</strong></h5>
+            <p class="card-text">Permet de prendre la décision finale concernant l'approbation ou le rejet de la demande de crédit, en se basant sur les analyses et évaluations précédentes.</p>
+            <div style="margin-bottom: 70px;"></div> <!-- Add vertical spacing -->
+
+            <p class="text-center" *ngIf="!interactiviteExists">
+              <a [routerLink]="['/nav/inter-decideur-comite', iddemande]" style="color: #3CAB90;">
+                  <strong>Accéder</strong> <span>&rarr;</span>
+              </a>
+          </p>
+          <p class="text-center" *ngIf="interactiviteExists">
+              <a [routerLink]="['/nav/edit-inter-decideur-comite', iddemande]" style="color: #3CAB90;">
+                  <strong>Accéder</strong> <span>&rarr;</span>
+              </a>
+          </p>
+
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100">
+          <img src="assets/Visite Management.png" class="card-img-top" alt="Image 3">
+          <div class="card-body">
+            <h5 class="card-title"><strong>Visite Management</strong></h5>
+            <p class="card-text">Permet la gestion et le suivi des visites effectuées</p>
+            <div style="margin-bottom: 70px;"></div> <!-- Add vertical spacing -->
+            
+            <p class="text-center" *ngIf="!checVMExists">
+              <a [routerLink]="['/nav/visiteManagement', iddemande]" style="color: #3CAB90;">
+                  <strong>Accéder</strong> <span>&rarr;</span>
+              </a>
+          </p>
+          <p class="text-center" *ngIf="checVMExists">
+              <a [routerLink]="['/nav/edit-visiteManagement', iddemande]" style="color: #3CAB90;">
+                  <strong>Accéder</strong> <span>&rarr;</span>
+              </a>
+          </p>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+</div>

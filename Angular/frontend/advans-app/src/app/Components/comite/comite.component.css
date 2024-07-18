@@ -1,0 +1,21 @@
+.comite-container {
+    max-width: 3000px; /* Ajustez selon vos besoins */
+    margin: 0 auto; /* Centrer le contenu horizontalement */
+    padding: 20px; /* Ajoutez un peu d'espace autour du contenu */
+    color:black;
+    background-color: #ffffff;
+  }
+
+  .table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table {
+    margin-bottom: 20px;
+}
+
+.required::after {
+  content: " *";
+  color: red;
+}

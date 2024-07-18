@@ -1,0 +1,141 @@
+<div class="dashboard-container">
+    <div class="row">
+      
+        <!-- Colonne pour les filtres -->
+        <div class="col-8 d-flex align-items-center">
+          <!-- Dropdown pour le filtre par Type Client -->
+          <div class="dropdown typefiltre">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Type Client
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" [ngClass]="{ 'selected-item': TypeClientFilter === '' }" (click)="applyTypeClientFilter('')">Tous les clients</a>
+              <a class="dropdown-item" [ngClass]="{ 'selected-item': TypeClientFilter === 'Client_Particulier' }" (click)="applyTypeClientFilter('Client_Particulier')">Client Particulier</a>
+              <a class="dropdown-item" [ngClass]="{ 'selected-item': TypeClientFilter === 'Client_Entreprise' }" (click)="applyTypeClientFilter('Client_Entreprise')">Client Entreprise</a>
+            </div>
+          </div>
+    
+          <!-- Dropdown pour le filtre par Produit -->
+    <div class="dropdown typefiltre ms-2">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonAgence" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Agences
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonAgence">
+        <a class="dropdown-item" [ngClass]="{ 'selected-item': AgenceFilter === '' }" (click)="applyAgenceFilter('')">Tous les agences</a>
+        <a *ngFor="let agence of agences" class="dropdown-item" [ngClass]="{ 'selected-item': AgenceFilter === agence.nomAgence }" (click)="applyAgenceFilter(agence.nomAgence)">{{ agence.nomAgence }}</a>
+      </div>
+    </div>
+    
+    
+          <!-- Dropdown pour le filtre par Statut -->
+          <div class="dropdown typefiltre ms-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonStatut" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Statut
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonStatut">
+              <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === '' }" (click)="applyStatutFilter('')">Tous les statuts</a>
+              <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'DEMANDE_BROUILLON' }" (click)="applyStatutFilter('DEMANDE_BROUILLON')">Demande brouillon</a>
+              <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'ANALYSE' }" (click)="applyStatutFilter('ANALYSE')">Analyse</a>
+              <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'VERIFICATIONS_AVANT_COMITE' }" (click)="applyStatutFilter('VERIFICATIONS_AVANT_COMITE')">Vérifications avant comité</a>
+              <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'ANALYSE_RISQUE' }" (click)="applyStatutFilter('ANALYSE_RISQUE')">Analyse risque</a>
+              <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'COMITE' }" (click)="applyStatutFilter('COMITE')">Comité</a>
+              <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'ATTENTE_ACCORD_CLIENT' }" (click)="applyStatutFilter('ATTENTE_ACCORD_CLIENT')">Attente accord client</a>
+              <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'PRET_A_DECARISSER' }" (click)="applyStatutFilter('PRET_A_DECARISSER')">Prêt à décaisser</a>
+             
+              <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'REFUSE' }" (click)="applyStatutFilter('REFUSE')">Refusé</a>
+            </div>
+          </div>
+    
+          <!-- Dropdown pour le filtre par Produit -->
+    <div class="dropdown typefiltre ms-2">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonProduit" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Produit
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonProduit">
+        <a class="dropdown-item" [ngClass]="{ 'selected-item': ProduitFiltre === '' }" (click)="applyProduitFilter('')">Tous les produits</a>
+        <a *ngFor="let produit of produits" class="dropdown-item" [ngClass]="{ 'selected-item': ProduitFiltre === produit.nomProduit }" (click)="applyProduitFilter(produit.nomProduit)">{{ produit.nomProduit }}</a>
+      </div>
+    </div>
+    
+        </div>
+      </div>
+    
+      <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+      <div class="row">
+      <!-- Table des demandes -->
+      <div class="col-md-7">
+        <div class="table-container ">
+          <table mat-table [dataSource]="filteredDemandes" class="mat-elevation-z8 custom-table">
+        
+            <!-- Id Demande Column -->
+            <ng-container matColumnDef="idDemande">
+              <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Id Demande </th>
+              <td mat-cell *matCellDef="let Demande" style="width: 20%;"> {{Demande.idDemande}} </td>
+            </ng-container>
+        
+        
+            <!-- Statut Column -->
+            <ng-container matColumnDef="statut">
+              <th mat-header-cell *matHeaderCellDef style="width: 80%;"> Statut </th>
+              <td mat-cell *matCellDef="let Demande" style="width: 880%;"> {{Demande.statut}} </td>
+            </ng-container>
+        
+        
+            <!-- Détails Column -->
+            <ng-container matColumnDef="details">
+              <th mat-header-cell *matHeaderCellDef > </th>
+              <td mat-cell *matCellDef="let Demande" >
+                <a  [routerLink]="['/nav/dashboard-Operations']" (click)="setIDSelectionne(Demande.idDemande) ">
+                    <i class="fa-solid fa-chart-pie"></i>
+                  </a>
+              </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+          </table>
+          <mat-paginator class="mat-elevation-z8 custom-paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          
+          <p class="custom-paginator" *ngIf="!Demandes || Demandes.length <= 0">Aucune demande trouvée</p>
+        </div>
+        
+    
+        <!-- Lien de connexion si l'utilisateur n'est pas authentifié -->
+        
+      </div>
+
+      <div class="col-md-5" style="margin-top: 70px;">
+        <div class="chart-container">
+          <canvas baseChart
+                  [datasets]="dureedemandeChartData"
+                  [labels]="dureedemandeChartLabels"
+                  [options]="dureedemandeChartOptions"
+                  [legend]="dureedemandeChartLegend"
+                  [type]="dureedemandeChartType">
+          </canvas>
+        </div>
+    </div>
+
+      </div>
+      <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+      
+
+      <div class="col-md-5" style=" margin-left: 400px;" >
+        <div class="chart-container totale">
+          <canvas baseChart
+                  [datasets]="dureetotaleChartData"
+                  [labels]="dureetotaleChartLabels"
+                  [options]="dureetotaleChartOptions"
+                  [legend]="dureetotaleChartLegend"
+                  [type]="dureetotaleChartType">
+          </canvas>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+    

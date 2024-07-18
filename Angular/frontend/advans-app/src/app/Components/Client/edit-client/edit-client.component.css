@@ -1,0 +1,13 @@
+.smaller-image {
+    width: 200px; /* Ajustez la taille selon vos préférences */
+    height: auto;
+}
+
+
+.edit-container {
+    max-width: 5000px; /* Ajustez selon vos besoins */
+    margin: 0 auto; /* Centrer le contenu horizontalement */
+    padding: 20px; /* Ajoutez un peu d'espace autour du contenu */
+    color:black;
+    background-color: #ffffff;
+  }

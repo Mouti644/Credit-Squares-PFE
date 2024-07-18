@@ -1,0 +1,127 @@
+<div class="list-demandes-container">
+  <div class="row">
+    <!-- Colonne pour les filtres -->
+    <div class="col-8 d-flex align-items-center">
+      <!-- Dropdown pour le filtre par Type Client -->
+      <div class="dropdown typefiltre">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Type Client
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" [ngClass]="{ 'selected-item': TypeClientFilter === '' }" (click)="applyTypeClientFilter('')">Tous les clients</a>
+          <a class="dropdown-item" [ngClass]="{ 'selected-item': TypeClientFilter === 'Client_Particulier' }" (click)="applyTypeClientFilter('Client_Particulier')">Client Particulier</a>
+          <a class="dropdown-item" [ngClass]="{ 'selected-item': TypeClientFilter === 'Client_Entreprise' }" (click)="applyTypeClientFilter('Client_Entreprise')">Client Entreprise</a>
+        </div>
+      </div>
+
+      <!-- Dropdown pour le filtre par Produit -->
+<div class="dropdown typefiltre ms-2">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonAgence" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Agences
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonAgence">
+    <a class="dropdown-item" [ngClass]="{ 'selected-item': AgenceFilter === '' }" (click)="applyAgenceFilter('')">Tous les agences</a>
+    <a *ngFor="let agence of agences" class="dropdown-item" [ngClass]="{ 'selected-item': AgenceFilter === agence.nomAgence }" (click)="applyAgenceFilter(agence.nomAgence)">{{ agence.nomAgence }}</a>
+  </div>
+</div>
+
+
+      <!-- Dropdown pour le filtre par Statut -->
+      <div class="dropdown typefiltre ms-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonStatut" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Statut
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonStatut">
+          <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === '' }" (click)="applyStatutFilter('')">Tous les statuts</a>
+          <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'DEMANDE_BROUILLON' }" (click)="applyStatutFilter('DEMANDE_BROUILLON')">Demande brouillon</a>
+          <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'ANALYSE' }" (click)="applyStatutFilter('ANALYSE')">Analyse</a>
+          <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'VERIFICATIONS_AVANT_COMITE' }" (click)="applyStatutFilter('VERIFICATIONS_AVANT_COMITE')">Vérifications avant comité</a>
+          <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'ANALYSE_RISQUE' }" (click)="applyStatutFilter('ANALYSE_RISQUE')">Analyse risque</a>
+          <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'COMITE' }" (click)="applyStatutFilter('COMITE')">Comité</a>
+          <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'ATTENTE_ACCORD_CLIENT' }" (click)="applyStatutFilter('ATTENTE_ACCORD_CLIENT')">Attente accord client</a>
+          <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'PRET_A_DECARISSER' }" (click)="applyStatutFilter('PRET_A_DECARISSER')">Prêt à décaisser</a>
+         
+          <a class="dropdown-item" [ngClass]="{ 'selected-item': statutFilter === 'REFUSE' }" (click)="applyStatutFilter('REFUSE')">Refusé</a>
+        </div>
+      </div>
+
+      <!-- Dropdown pour le filtre par Produit -->
+<div class="dropdown typefiltre ms-2">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonProduit" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Produit
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonProduit">
+    <a class="dropdown-item" [ngClass]="{ 'selected-item': ProduitFiltre === '' }" (click)="applyProduitFilter('')">Tous les produits</a>
+    <a *ngFor="let produit of produits" class="dropdown-item" [ngClass]="{ 'selected-item': ProduitFiltre === produit.nomProduit }" (click)="applyProduitFilter(produit.nomProduit)">{{ produit.nomProduit }}</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <!-- Colonne pour le bouton "Nouvelle demande" -->
+    <div class="col-4 d-flex align-items-center justify-content-end">
+      <button class="btn btn-success" (click)="handleButtonClick()" >Nouvelle demande</button>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+  <!-- Table des demandes -->
+  
+    
+      <table class="table" *ngIf="paginateddemandes && paginateddemandes.length > 0">
+        <thead>
+          <tr>
+            <th>Id Demande</th>
+            <th>Nom Client</th>
+            <th>Type Client</th>
+            <th>Agence</th>
+            <th>Montant</th>
+            <th>Statut</th>
+            <th>Produit</th>
+            <th>Date de création</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let demande of paginateddemandes">
+            <td>{{ demande.idDemande }}</td>
+            <td>{{ demande.nomClient }}</td>
+            <td>{{ demande.typeClient }}</td>
+            <td>{{ demande.nomAgence }}</td>
+            <td>{{ demande.montant }}</td>
+            <td>{{ demande.statut }}</td>
+            <td>{{ demande.nomProduit }}</td>
+            <td>{{ demande.dateDemande }}</td>
+            <td>
+              <a class="Details"  (click)="showOperationsDialog(demande.idDemande!)"
+              (click)="setStatutSelectionne(demande.statut!)"
+              (click)="settypeclient(demande.typeClient!)"
+              (click)="demande.typeClient === 'Client Particulier' ? setIdClientParticulier(demande.idClientParticulier!) : setIdClientEntreprise(demande.idClientEntreprise!)">
+               Détails
+           </a>
+              <div style="margin-right: 10px;"></div>
+              <a  [routerLink]="['/nav/linktoprocess', demande.idDemande]" [attr.disabled]="userName !== 'Chef d\'agence' ? true : null">
+                <i class="fa-solid fa-pen-to-square" ></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="!paginateddemandes || paginateddemandes.length <= 0">Aucune demande trouvée</p>
+
+      <div class="pagination-controls">
+        <button (click)="previousPageEntreprise()" [disabled]="currentPage === 1">Précédent</button>
+        <span class="page">Page {{currentPage}}</span>
+        <button (click)="nextPageEntreprise()" [disabled]="(currentPage * itemsPerPage) >= filteredDemandes.length">Suivant</button>
+      </div>
+    
+    
+
+    <!-- Lien de connexion si l'utilisateur n'est pas authentifié -->
+    <ul>
+      <li *ngIf="!isUserAuthenticated()"><a routerLink="/accueil">Login</a></li>
+    </ul>
+  </div>
+

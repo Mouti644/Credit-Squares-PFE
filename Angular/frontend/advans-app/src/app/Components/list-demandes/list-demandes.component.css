@@ -1,0 +1,92 @@
+.custom-table {
+  background-color: #ffffff; /* Background blanc du tableau */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Ajout d'un shadow au tableau */
+  color: #000000;
+}
+
+.custom-paginator{
+  background-color: #d58b3d; /* Background blanc du tableau */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Ajout d'un shadow au tableau */
+  color: #ffffff;
+}
+
+.custom-table th, .custom-table td {
+  color: #000000; /* Texte en noir */
+}
+
+.custom-table th {
+  background-color: #f7f7f7; /* Background des entêtes de colonne en gris clair */
+}
+
+.custom-table td {
+  border-bottom: 1px solid #dddddd; /* Bordure inférieure des cellules en gris clair */
+}
+
+/************************************************************/
+
+table {
+  margin-top: 50px; /* Adjust this value as needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Ombre légère pour le formulaire */
+}
+
+.text-start.mb-4.ms-0 button {
+  margin-left: 800px; /* Déplacer légèrement vers la droite */
+  margin-top: 50px; /* Déplacer légèrement vers le bas */
+}
+
+.dropdown.typefiltre {
+  margin-right: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Ajout d'un shadow au tableau */
+}
+
+.dropdown.typefiltre .btn-secondary {
+  background-color: #ffffff; /* Couleur de fond jaune pour les boutons */
+  border-color: #ffffff; /* Couleur de la bordure jaune */
+  color: #000000;
+}
+
+.dropdown.typefiltre .btn-secondary:hover {
+  background-color: #c7a945; /* Couleur de fond jaune plus foncée pour les boutons au survol */
+  border-color: #c7a945; /* Couleur de la bordure jaune plus foncée au survol */
+}
+
+.selected-item {
+  background-color: #c7a945; /* Couleur de fond jaune */
+  color: #000000; /* Couleur du texte noir */
+}
+
+.larger-text {
+  font-size: 1.2rem; /* Ajustez la taille de la police selon vos besoins */
+}
+
+.list-demandes-container {
+  max-width: 5000px; /* Ajustez selon vos besoins */
+  margin: 0 auto; /* Centrer le contenu horizontalement */
+  padding: 20px; /* Ajoutez un peu d'espace autour du contenu */
+  background-color: white;
+}
+
+.text-start.mb-4.ms-0 {
+  flex: 1; /* Faites en sorte que cet élément occupe tout l'espace disponible */
+}
+
+
+a[disabled] {
+  pointer-events: none;
+  color: grey; /* Couleur grisée pour indiquer que c'est désactivé */
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-controls button {
+  margin: 0 10px;
+  padding: 5px 10px;
+}
+
+.page{
+  color: #000000;
+}

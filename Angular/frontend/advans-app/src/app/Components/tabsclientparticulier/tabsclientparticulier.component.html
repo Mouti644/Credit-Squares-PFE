@@ -1,0 +1,305 @@
+
+      <div class="dropdown aa" style="margin-left: 15px;">
+        <button class="dropdown-toggle custom-dropdown-button" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ getSelectedTabLabel() }}
+        </button>
+        <ul class="dropdown-menu custom-dropdown-menu" aria-labelledby="dropdownMenuButton2">
+          <li><a class="dropdown-item custom-dropdown-item" (click)="selectTab('ReferentFamiliaux')">Référents Familiaux</a></li>
+          <li><a class="dropdown-item custom-dropdown-item" (click)="selectTab('CompteBancaireParticulier')">Comptes Bancaires</a></li>
+          <li><a class="dropdown-item custom-dropdown-item"  (click)="selectTab('CreditRecent')">Crédits Récents</a></li>
+          <li><a class="dropdown-item custom-dropdown-item"  (click)="selectTab('CompteParticulier')">Comptes Particulier</a></li>
+        </ul>
+      </div>
+
+  
+
+<div class="container my-5 row justify-content-end"> 
+    <!-- Sélection de type --> 
+   
+
+<!-- Référents Familiaux -->
+<div class="row">
+   
+    <div class="col-lg-4 mt-3" *ngIf="tabsSelectionne === 'ReferentFamiliaux'">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="custom-heading-right"><strong>Référents Familiaux</strong></h2>
+                    <form #form="ngForm" (ngSubmit)="addRefFamil()">
+                        <div class="mb-3">
+                            <label for="Nom" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="Nom" name="Nom" [(ngModel)]="addreferentFamiliauxrequest.nom" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="prenom" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" id="prenom" name="prenom" [(ngModel)]="addreferentFamiliauxrequest.prenom" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telephone" class="form-label">Téléphone</label>
+                            <input type="text" class="form-control" id="telephone" name="telephone" [(ngModel)]="addreferentFamiliauxrequest.telephone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="relation" class="form-label">Relation</label>
+                            <input type="text" class="form-control" id="relation" name="relation" [(ngModel)]="addreferentFamiliauxrequest.relation" required>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </form>
+                    <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tableau  -->
+    <div class="col-lg-8 mt-3" *ngIf="tabsSelectionne === 'ReferentFamiliaux'">
+        <table class="table">
+            <thead>
+                <tr>
+                     
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Téléphone</th>
+                    <th>Relation</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let refFam of referentFamiliaux">
+                     
+                    <td>{{refFam.nom}}</td>
+                    <td>{{refFam.prenom}}</td>
+                    <td>{{refFam.telephone}}</td>
+                    <td>{{refFam.relation}}</td>
+                    
+                   <td><a [routerLink]="['/nav/edit-reffamil/', refFam.idRefFam]" (click)="editRefFamil(refFam)" >Modifier</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Comptes Bancaires -->
+<div class="row">
+    
+    <div class="col-lg-6" *ngIf="tabsSelectionne === 'CompteBancaireParticulier'">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="custom-heading-right"><strong>Comptes Bancaires</strong></h2>
+                    <form #form="ngForm" (ngSubmit)="addCompteBancaireParticulier()">
+                    <div class="mb-3">
+                        <label for="Banque" class="form-label">Banque</label>
+                        <input type="text" class="form-control" id="Banque" name="Banque" [(ngModel)]="addcompteBancaireParticulierrequest.banque" required>
+                    </div>
+                    <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                    <div class="mb-3">
+                        <label for="Typecompteban" class="form-label">Type du compte</label>
+                        <select class="form-select" id="Typecompteban" name="Typecompteban" [(ngModel)]="addcompteBancaireParticulierrequest.typeCompte" required>
+                            <option *ngFor="let type of typesCompte" [value]="type">{{ type }}</option>
+                            </select>
+                    </div>
+                    <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                    <div class="mb-3">
+                        <label for="Solde" class="form-label">Solde</label>
+                        <input type="text" class="form-control" id="Solde" name="Solde" [(ngModel)]="addcompteBancaireParticulierrequest.solde" required>
+                    </div>
+                   
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tableau  -->
+    <div class="col-lg-6" *ngIf="tabsSelectionne === 'CompteBancaireParticulier'">
+        <table class="table">
+            <thead>
+                <tr>
+                     
+                    <th>Banque</th>
+                    <th>Type du compte</th>
+                    <th>Solde</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let compteBancaireParticulier of compteBancaireParticulier">
+                     
+                    <td>{{compteBancaireParticulier.banque}}</td>
+                    <td>{{compteBancaireParticulier.typeCompte}}</td>
+                    <td>{{compteBancaireParticulier.solde}}</td>
+                   <td><a [routerLink]="['/nav/edit-cmptebancpart/', compteBancaireParticulier.idCompte]" (click)="editCompteBancaireparticulier(compteBancaireParticulier)">Modifier</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ <!-- Crédits Récents -->
+ <div class="row">
+   
+    <div class="col-lg-4 mt-3" *ngIf="tabsSelectionne === 'CreditRecent'">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="custom-heading-right"><strong>Crédits Récents</strong></h2>
+                    <form #form="ngForm" (ngSubmit)="addCreditRecentParticulier()">
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="Objet" class="form-label">Objet</label>
+                                    <input type="text" class="form-control" id="Objet" name="Objet" [(ngModel)]="addcreditRecentrequest.objet" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="Duree" class="form-label">Durée</label>
+                                    <input type="text" class="form-control" id="Duree" name="Duree" [(ngModel)]="addcreditRecentrequest.duree" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="montantInitial" class="form-label">Montant Initial</label>
+                                    <input type="text" class="form-control" id="montantInitial" name="montantInitial" [(ngModel)]="addcreditRecentrequest.montantInitial" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="enCoursRestant" class="form-label">Crédits en cours restants</label>
+                                    <input type="text" class="form-control" id="enCoursRestant" name="enCoursRestant" [(ngModel)]="addcreditRecentrequest.enCoursRestant" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="montantEchMens" class="form-label">Montant de l'échéance mensuelle </label>
+                                    <input type="text" class="form-control" id="montantEchMens" name="montantEchMens" [(ngModel)]="addcreditRecentrequest.montantEchMens" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                
+                        <div class="mb-3">
+                            <label for="nbrEchRestant" class="form-label">Nombre d'échéances restantes</label>
+                            <input type="text" class="form-control" id="nbrEchRestant" name="nbrEchRestant" [(ngModel)]="addcreditRecentrequest.nbrEchRestant" required>
+                        </div>
+                            </div>
+                            <div class="col">
+                        <div class="mb-3">
+                            <label for="nbrEchEnRetard" class="form-label">Nombre d'échéances en retard</label>
+                            <input type="text" class="form-control" id="nbrEchEnRetard" name="nbrEchEnRetard" [(ngModel)]="addcreditRecentrequest.nbrEchEnRetard" required>
+                        </div>
+                    </div>
+                    
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="nbrMaxJoursEnRetard" class="form-label">Nombre maximal de jours en retard</label>
+                                <input type="text" class="form-control" id="nbrMaxJoursEnRetard" name="nbrMaxJoursEnRetard" [(ngModel)]="addcreditRecentrequest.nbrMaxJoursEnRetard" required>
+                            </div>
+                        </div>
+                       
+                      
+                       
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </form>
+                    <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tableau  -->
+    <div class="col-lg-8 mt-3" *ngIf="tabsSelectionne === 'CreditRecent'">
+        <table class="table">
+            <thead>
+                <tr>
+                     
+                    <th>Objet</th>
+                    <th>Durée</th>
+                    <th>Montant Initial</th>
+                    <th>Crédits en cours restants</th>
+                   
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let creditRecent of creditRecent">
+                     
+                    <td>{{creditRecent.objet}}</td>
+                    <td>{{creditRecent.duree}}</td>
+                    <td>{{creditRecent.montantInitial}}</td>
+                    <td>{{creditRecent.enCoursRestant}}</td>
+                   
+                    
+                    <td><a [routerLink]="['/nav/edit-creditrecentpart/', creditRecent.idCRecent]" (click)="editcreditRecent(creditRecent)" >Modifier</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Comptes Particuliers -->
+<div class="row">
+    <!-- Formulaire pour les Garanties -->
+    <div class="col-lg-6" *ngIf="tabsSelectionne === 'CompteParticulier'">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="custom-heading-right"><strong>Comptes Particuliers</strong></h2>
+                    <form #form="ngForm" (ngSubmit)="addCompteParticulier()">
+                    <div class="mb-3">
+                        <label for="dateOuvertureCompte" class="form-label">Date d'ouverture du compte</label>
+                        <input type="date" class="form-control" id="dateOuvertureCompte" name="dateOuvertureCompte" [(ngModel)]="addcompteParticulierrequest.dateOuvertureCompte" required>
+                    </div>
+                    <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                    <div class="mb-3">
+                        <label for="deviseCompte" class="form-label">Devise du compte</label>
+                        <input type="text" class="form-control" id="deviseCompte" name="deviseCompte" [(ngModel)]="addcompteParticulierrequest.deviseCompte" required>
+                    </div>
+                   
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tableau  -->
+    <div class="col-lg-6" *ngIf="tabsSelectionne === 'CompteParticulier'">
+        <table class="table">
+            <thead>
+                <tr>
+                     
+                    <th>Date d'ouverture du compte</th>
+                    <th>Devise du compte</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let compteParticulier of compteParticulier">
+                     
+                    <td>{{compteParticulier.dateOuvertureCompte}}</td>
+                    <td>{{compteParticulier.deviseCompte}}</td>
+                    
+                   <td><a [routerLink]="['/nav/edit-comptepart/', compteParticulier.idCompteParticulier]" (click)="editCompteparticulier(compteParticulier)">Modifier</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+    <div style="margin-left: 1000px;">
+        <button type="submit" class="terminer" (click)="Terminer()">Terminer</button>
+      </div>
+
+</div>

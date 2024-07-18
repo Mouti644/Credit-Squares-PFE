@@ -1,0 +1,29 @@
+<div class="editProduit-container">
+
+
+    <!-- Formulaire et tableau pour les Garanties -->
+    <div class="row">
+        <!-- Formulaire pour les Garanties -->
+        <div class="col-lg-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Produit</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="updateProduit()">
+                        <div class="mb-3">
+                            <label for="nomProduit" class="form-label">Nom du produit</label>
+                            <input type="text" class="form-control" id="nomProduit" name="nomProduit" [(ngModel)]="editProduitrequest.nomProduit" required>
+                        </div>
+                        
+                       
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <button type="button" class="btn btn-danger float-end" (click)="deleteProduit(editProduitrequest.idProduit!)">Supprimer le Produit</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+
+</div>

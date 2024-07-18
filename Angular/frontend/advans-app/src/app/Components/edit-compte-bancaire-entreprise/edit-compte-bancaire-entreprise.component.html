@@ -1,0 +1,34 @@
+<div class="edit-container">
+
+    <div class="row">
+        
+        <div class="col-lg-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Comptes Bancaires</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="updateBancaireEntreprise()">
+                        <div class="mb-3">
+                            <label for="Banque" class="form-label">Banque</label>
+                            <input type="text" class="form-control" id="Banque" name="Banque" [(ngModel)]="addCompteBancaireEntrepriserequest.banque" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Typecompteban" class="form-label">Type du compte</label>
+                            <select class="form-select" id="Typecompteban" name="Typecompteban" [(ngModel)]="addCompteBancaireEntrepriserequest.typeCompte" required>
+                                <option *ngFor="let type of typesCompte" [value]="type">{{ type }}</option>
+                                </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Solde" class="form-label">Solde</label>
+                            <input type="text" class="form-control" id="Solde" name="Solde" [(ngModel)]="addCompteBancaireEntrepriserequest.solde" required>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <button type="button" class="btn btn-danger" (click)="deleteBancaireParticulier(addCompteBancaireEntrepriserequest.idCompteBanq)">Supprimer</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

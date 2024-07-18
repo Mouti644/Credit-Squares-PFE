@@ -1,0 +1,139 @@
+
+<div class="container my-5 row ">
+    
+    <div class="col-6">
+      <h2 class="custom-heading-right"><strong>Nouveau Client Entreprise</strong></h2>
+        <form #form="ngForm" (ngSubmit)="AddClientEntreprise()">
+
+            <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="Sigle" class="form-label required"><strong>Sigle</strong></label>
+                    <input type="text" class="form-control" id="Sigle" name="Sigle" [(ngModel)]="addClientEntrepriseRequest.sigle" required>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="Interlocuteur" class="form-label required"><strong>Interlocuteur Principal</strong></label>
+                    <input type="text" class="form-control" id="Interlocuteur" name="Interlocuteur" [(ngModel)]="addClientEntrepriseRequest.interlocuteurPrincipal" required>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="Raison" class="form-label required"><strong>Raison Sociale</strong></label>
+                    <input type="text" class="form-control" id="Raison" name="Raison" [(ngModel)]="addClientEntrepriseRequest.raisonSociale" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="Telephone" class="form-label required"><strong>Téléphone</strong></label>
+                    <input type="text" class="form-control" id="Telephone" name="Telephone" [(ngModel)]="addClientEntrepriseRequest.telephone" required>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="Ville" class="form-label required"><strong>Ville</strong></label>
+                    <input type="text" class="form-control" id="Ville" name="Ville" [(ngModel)]="addClientEntrepriseRequest.ville" required>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="Identit" class="form-label required"><strong>Identité Client</strong></label>
+                    <input type="text" class="form-control" id="Identit" name="Identit" [(ngModel)]="addClientEntrepriseRequest.identiteClient" required>
+                  </div>
+                </div>
+              </div>
+         
+        <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="Agence" class="form-label required"><strong>Agence</strong></label>
+                    <select class="form-select" id="Agence" name="Agence" [(ngModel)]="selectedAgecneId" (change)="onAgenceSelected()" required>
+                        <option *ngFor="let agence of agences" [value]="agence.idAgence">{{ agence.nomAgence }}</option>
+                    </select>
+                </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="Prenom" class="form-label required"><strong>Gestionnaire</strong></label>
+                        <input type="text" class="form-control" id="Gestionnaire" name="Gestionnaire" [(ngModel)]="addClientEntrepriseRequest.gestionnaire" required>
+                    </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="sitimm" class="form-label required"><strong>Situation immobilière</strong></label>
+                    <select class="form-select" id="sitimm" name="sitimm" [(ngModel)]="selectedSitImmId" (change)="onSituationImmobilierSelected()" required>
+                        <option *ngFor="let Situation of situationsImmobilier" [value]="Situation.idSituationImmobilierEntreprise">{{ Situation.situation }}</option>
+                    </select>
+                </div>
+                </div>
+        </div>
+        <div class="row">
+          <div class="col">
+              <div class="mb-2">
+                  <label for="secteur" class="form-label required"><strong>Secteur d'activité</strong></label>
+                  <select class="form-select" id="secteur" name="secteur"[(ngModel)]="selectedSecteurActiviteId" (change)="onSecteurActiviteSelected()" required>
+                      <option *ngFor="let secteur of secteursActivite" [value]="secteur.idSecteurActivite">{{ secteur.nomSecteur }}</option>
+                  </select>
+              </div>
+          </div>
+          <div class="col">
+              <div class="mb-2">
+                  <label for="activite" class="form-label required"><strong>Activité</strong></label>
+                  <select class="form-select" id="activite" name="activite" [(ngModel)]="selectedActiviteId" (change)="onActiviteSelected()" required>
+                      <option *ngFor="let act of activite" [value]="act.idActivite">{{ act.nomActivite }}</option>
+                  </select>
+              </div>
+          </div>
+          <div class="col">
+              <div class="mb-2">
+                  <label for="sousAct" class="form-label required"><strong>Sous Activité</strong></label>
+                  <select class="form-select" id="sousAct" name="sousAct" [(ngModel)]="selectedSousActiviteId" (change)="onSousActiviteSelected()" required>
+                      <option *ngFor="let sousAct of sousActivite" [value]="sousAct.idSousActivite">{{ sousAct.nomSousActivite }}</option>
+                  </select>
+              </div>
+          </div>
+      </div>
+      
+      <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+        <div class="row">
+            <div class="col">
+
+                <div class="mb-3">
+                    <label for="ChiffreAffaire" class="form-label required"><strong>Chiffre d'affaire mensuel</strong></label>
+                    <input type="text" class="form-control" id="ChiffreAffaire" name="ChiffreAffaire" [(ngModel)]="addClientEntrepriseRequest.chiffreAffaireMensuel" required>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="mb-3">
+                    <label for="NombreEmp" class="form-label required"><strong>Nombre d'employés</strong></label>
+                    <input type="text" class="form-control" id="NombreEmp" name="NombreEmp" [(ngModel)]="addClientEntrepriseRequest.nombreEmployes" required>
+                </div>
+            </div>
+            <div class="col">
+              <div class="mb-3">
+                  <label for="datecrea" class="form-label required"><strong>Date de création de l'entreprise</strong></label>
+                  <input type="date" class="form-control" id="datecrea" name="datecrea" [(ngModel)]="addClientEntrepriseRequest.dateCreationEntreprise" required>
+              </div>
+          </div>
+            
+ 
+
+
+          
+        
+        </div>
+        <div class="form-group text-end">
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <div class="alert alert-danger err" *ngIf="errorMessage">{{ errorMessage }}</div>
+        </div>
+          </form>
+          
+    </div>
+
+</div>
+
+

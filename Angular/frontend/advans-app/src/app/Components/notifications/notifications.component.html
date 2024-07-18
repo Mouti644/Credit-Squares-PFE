@@ -1,0 +1,22 @@
+<div class="notifications-container">
+    <div *ngIf="notifications.length > 0; else noNotifications">
+        <div class="col-md-6">
+            <h4 class="card-title">Notifications</h4>
+            <div *ngFor="let notification of notifications">
+                <ng-container *ngIf="!notification.isRead">
+                    <div class="alert alert-danger alert-with-icon" data-notify="container">
+                        <i class="fas fa-bell icon-align" data-notify="icon"></i>
+                        <span data-notify="message" style="margin-left: 20px;">{{ notification.message }}</span>
+                        <button mat-button type="button" class="close close-button" (click)="markAsRead(notification.id)">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <!--<a style="margin-left: 80px;" *ngIf="notification.idDemande" [routerLink]="['/nav/operations', notification.idDemande]">Accéder</a>-->
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <ng-template #noNotifications>
+        <p>Aucune notification.</p>
+    </ng-template>
+</div>

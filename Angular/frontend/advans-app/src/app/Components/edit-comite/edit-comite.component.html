@@ -1,0 +1,97 @@
+<div class="comite-container">
+    <div class="main-content" style="margin-top: 20px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title" style="margin-left: 15px;"><strong>Comite</strong></h4>
+                        </div>
+                        <div class="content" style="margin-top: 20px;">
+                            <form #form="ngForm" (ngSubmit)="updateComite()">
+                                <div class="row">
+                                    <div class="col-md-5" style="margin-left: 15px;">
+                                        <div class="form-group">
+                                            <label for="iddemande" class="form-label">Id Demande</label>
+                                            <input type="text" class="form-control" disabled id="iddemande" name="iddemande" [(ngModel)]="comiterequest.idDemande">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="row">
+                                    <div class="col-11" style="margin-left: 15px;">
+                                        <label for="decision" class="form-label required"> Décision </label>
+                                        <select class="form-select" id="decision" name="decision" [(ngModel)]="comiterequest.decision" [disabled]="!isStatutConvenable()" required>
+                                            <option *ngFor="let dec of decisions" [value]="dec">{{ dec }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="row">
+                                    <div class="col-11" style="margin-left: 15px;">
+                                        <label for="rasison" class="form-label required"> Raison </label>
+                                        <textarea class="form-control" id="rasison" name="rasison" [(ngModel)]="comiterequest.raison" [disabled]="!isStatutConvenable()" required></textarea>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="row">
+                                    <div class="col-11" style="margin-left: 15px;">
+                                        <label for="montant" class="form-label required"> Montant </label>
+                                        <input type="text" class="form-control" id="montant" name="montant" [(ngModel)]="comiterequest.montant" [disabled]="!isStatutConvenable()" required>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="row">
+                                    <div class="col-11" style="margin-left: 15px;">
+                                        <label for="commentaires" class="form-label"> Commentaires </label>
+                                        <textarea class="form-control" id="commentaires" name="commentaires" [(ngModel)]="comiterequest.commentaires" [disabled]="!isStatutConvenable()" ></textarea>
+                                    </div>
+                                </div>
+                               
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info btn-fill" style="margin-left: 15px;" [disabled]="!isStatutConvenable()">Mettre a jour</button>
+                                </div>
+                                <div class="alert alert-success" *ngIf="successMessage">{{ successMessage }}</div>
+                                <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                            </form>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-top: 20px;">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" >
+                            <thead>
+                                <tr>
+                                    <th>Décideur</th>
+                                    <th>Réponse</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of interactivitesDecideur">
+                                    <td>{{item.decideur}}</td>
+                                    <td>{{item.reponse}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+
+                <div class="form-group text-end">
+                    <button type="button" class="btn btn-success" 
+                            [hidden]="comiterequest.decision !== 'Approuvé'"
+                            (click)="updatestatut(comiterequest.idDemande, 'Attente accord client')" [disabled]="!isStatutConvenable()">Valider</button>
+                
+                    <button type="button" class="btn btn-danger" 
+                            [hidden]="comiterequest.decision !== 'Rejeté'"
+                            (click)="updatestatut(comiterequest.idDemande, 'Refusé')" [disabled]="!isStatutConvenable()">Rejeter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

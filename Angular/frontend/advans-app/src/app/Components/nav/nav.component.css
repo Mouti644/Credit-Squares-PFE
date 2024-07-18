@@ -1,0 +1,116 @@
+.sidenav-container {
+  height: 100%;
+  background-color: rgba(187, 143, 86, 0.7);
+}
+
+.sidenav {
+  width: 260px;
+  height: auto;
+  max-height: 300vh;
+  background-position: center top;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: #b98137;
+}
+
+.sidenav .mat-toolbar {
+  background-image: url(../../../assets/CreditSquares_logo.png);
+  background-size: 200px auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(187, 143, 86, 0.7);
+  color: #fff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.sidenav .mat-toolbar mat-icon {
+  color: #ca7d17;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #fff;
+  color: #4e4d4d;
+  box-shadow: 0 6px 7px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.logout {
+  
+  color: #eb0505;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+
+
+.icon-logout {
+  font-size: 1.5em; /* Ajustez cette valeur selon vos besoins */
+  margin-top: 4px; /* Ajustez cette valeur pour descendre l'icône */
+  background-color: #fff;
+}
+
+.centered-list {
+  text-align: center;
+  height: 100%;
+}
+
+.mat-nav-list a {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px !important;
+  text-align: left;
+}
+
+.mat-icon, .fas {
+  width: 24px;
+  margin-right: 20px; /* Ajustez cette valeur pour augmenter l'espace entre l'icône et le titre */
+}
+
+.item-title {
+  flex-grow: 1;
+  margin-top: -5px; /* Ajustez cette valeur pour aligner le titre verticalement */
+}
+
+.mat-nav-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-item {
+  position: absolute;
+  bottom: 0;
+}
+
+/* Styles ajoutés pour le panneau d'expansion */
+.custom-expansion-panel-header {
+  background-color:  #b98137 !important;
+  color: #fff;
+}
+
+.custom-expansion-panel .mat-expansion-panel-body {
+  background-color:  #b98137 !important;
+  color: #fff;
+}
+
+.custom-nav-list .custom-nav-item {
+  background-color:  #b98137 !important;
+  color: #fff !important;
+  margin-bottom: 10px !important; /* Espace entre les sous-éléments */
+}
+
+.custom-nav-list .custom-nav-item .fas {
+  color: #fff;
+}
+
+.custom-expansion-panel{
+  background-color:  #b98137 !important;
+  color: #fff;
+}

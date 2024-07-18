@@ -1,0 +1,58 @@
+<div class="maps-container">
+  <div class="container">
+    <div class="row">
+      <div class="row">
+          <div class="col-12" style="margin-bottom: 20px;">
+              <button type="button" class="btn btn-secondary"  routerLink="/nav/parametres" style="margin-right: 50px;">Produits</button>
+              <button type="button" class="btn btn-primary">Agences</button>
+          </div>
+        </div>
+      <!-- Formulaire pour ajouter une agence -->
+      <div class="col-lg-4 mt-3">
+        <form #form="ngForm" (ngSubmit)="addAgence()" class="form-shadow">
+          <div class="mb-3">
+            <label for="nomAgence" class="form-label">Nom Agence</label>
+            <input type="text" class="form-control" id="nomAgence" name="nomAgence" [(ngModel)]="addAgencerequest.nomAgence" required>
+          </div>
+          <div class="mb-3">
+              <label for="region" class="form-label">Région</label>
+              <input type="text" class="form-control" id="region" name="region" [(ngModel)]="addAgencerequest.region" required>
+            </div>
+            <div class="mb-3">
+              <label for="telephone" class="form-label">Téléphone</label>
+              <input type="text" class="form-control" id="telephone" name="telephone" [(ngModel)]="addAgencerequest.telephone" required>
+            </div>
+            <div class="mb-3">
+              <label for="adresse" class="form-label">Adresse</label>
+              <input type="text" class="form-control" id="adresse" name="adresse" [(ngModel)]="addAgencerequest.adresse" required>
+            </div>
+          <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
+        <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+      </div>
+
+      <!-- Tableau pour les agences -->
+      <div class="col-lg-8 mt-3">
+        <table class="table table-shadow">
+          <thead>
+            <tr>
+              <th>Nom de l'Agence</th>
+              <th>Région</th>
+              <th>Téléphone</th>
+              <th>Adresse</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let agence of agence">
+              <td>{{agence.nomAgence}}</td>
+              <td>{{agence.region}}</td>
+              <td>{{agence.telephone}}</td>
+              <td>{{agence.adresse}}</td>
+              <td><a [routerLink]="['/nav/edit-agence/']" (click)="editAgence(agence)">Modifier</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

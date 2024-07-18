@@ -1,0 +1,14 @@
+.operations-container {
+    max-width: 3000px; /* Ajustez selon vos besoins */
+    margin: 0 auto; /* Centrer le contenu horizontalement */
+    padding: 20px; /* Ajoutez un peu d'espace autour du contenu */
+    color:black;
+    background-color: #ffffff;
+  }
+
+  .card-img-top {
+    width: 100%; /* Définir une largeur de 100% pour remplir la largeur de la carte */
+    height: 200px; /* Définir une hauteur fixe pour toutes les images */
+    object-fit: cover; /* Assurer que les images conservent leurs proportions */
+  }
+

@@ -1,0 +1,72 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+
+    <mat-toolbar class="centered-title"></mat-toolbar>
+    <mat-nav-list class="custom-expansion-panel" >
+      <mat-expansion-panel class="custom-expansion-panel">
+        <mat-expansion-panel-header class="custom-expansion-panel-header">
+          <mat-panel-title>
+            <i class="fas fa-chart-line icon-align" style="margin-left: -1px;"></i>
+            <span class="item-title " style="margin-left: -10px;" >Tableaux de bord</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list class="custom-nav-list">
+          <a mat-list-item (click)="dashclientButtonClick()" class="custom-nav-item">
+            <i class="fas fa-chart-line icon-align"></i>
+            <span class="item-title" >Clients</span>
+          </a>
+          <a mat-list-item (click)="dashdemandeButtonClick()" class="custom-nav-item">
+            <i class="fas fa-chart-line icon-align"></i>
+            <span class="item-title">Demandes</span>
+          </a>
+          <a mat-list-item (click)="dashoperationButtonClick()" class="custom-nav-item">
+            <i class="fas fa-chart-line icon-align"></i>
+            <span class="item-title">Opérations</span>
+          </a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <a mat-list-item routerLink="/nav/list">
+        <i class="fas fa-list icon-align"></i>
+        <span class="item-title">Demandes</span>
+      </a>
+      <a mat-list-item routerLink="/nav/clients-particuliers">
+        <i class="fas fa-users icon-align"></i>
+        <span class="item-title">Clients</span>
+      </a>
+      <a mat-list-item routerLink="/nav/notifications">
+        <i class="fas fa-bell icon-align"></i>
+        <span class="item-title">Notifications</span>
+      </a>
+      
+      <a mat-list-item (click)="parametreButtonClick()" class="bottom-item">
+        <i class="fas fa-cog icon-align"></i>
+        <span class="item-title">Paramètres</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <ng-container *ngIf="isHandset$ | async">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+      </ng-container>
+      <span>Bienvenue <br> {{userName}}</span>
+      <span class="spacer"></span> 
+      <button *ngIf="isUserAuthenticated()" class="logout" (click)="logOut()">
+        <i class="fa-solid fa-right-from-bracket icon-logout"></i>
+        
+      </button>
+
+      
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

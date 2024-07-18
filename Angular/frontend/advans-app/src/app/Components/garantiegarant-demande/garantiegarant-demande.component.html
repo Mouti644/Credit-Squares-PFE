@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row justify-content-start align-items-center mb-6" style="margin-top: -200px;">
+        <div class="col-auto">
+            <button type="button" class="btn custom-button" routerLink="/nav/add-garant">Garants</button>
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary">Garanties</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Formulaire pour les Garanties -->
+        <div class="col-lg-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Garanties</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="addGarantie()">
+                            <div class="mb-3">
+                                <label for="Propr" class="form-label">Propriétaire</label>
+                                <input type="text" class="form-control" id="Propr" name="Propr" [(ngModel)]="addgarantierequest.proprietaire" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Valeur" class="form-label">Valeur estimée</label>
+                                <input type="text" class="form-control" id="Valeur" name="Valeur" [(ngModel)]="addgarantierequest.valeur_estime" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="TypeG" class="form-label">Type de garantie</label>
+                                <select class="form-select" id="TypeG" name="TypeG" [(ngModel)]="selectedtypeId" (change)="ontypeGarantiSelected()" required>
+                                    <option *ngFor="let typeG of typesGarantie" [value]="typeG.idTypeGarantie">{{ typeG.type }}</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary enregistrer">Enregistrer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau pour les Garanties -->
+        <div class="col-lg-6 mt-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id demande</th>
+                        <th>Propriétaire</th>
+                        <th>Valeur estimée</th>
+                        <th>Type de garantie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let garantie of garantie">
+                        <td>{{garantie.idDemande}}</td>
+                        <td>{{garantie.proprietaire}}</td>
+                        <td>{{garantie.valeur_estime}}</td>
+                        <td>{{garantie.type}}</td>
+                        <td><a [routerLink]="['/nav/edit-garantie/', garantie.idGarantie]" (click)="editGarantie(garantie)">Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+    <div style="margin-left: 1000px;">
+        <button type="submit" class="terminer" (click)="Terminer()">Terminer</button>
+      </div>
+</div>

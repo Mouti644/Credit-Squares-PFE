@@ -1,0 +1,32 @@
+
+/* sidebar.component.css */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100%;
+  background-color: #fbfcfb;
+  color: #090909;
+  padding: 20px;
+  box-shadow: 20px 0 20px -20px rgba(0, 0, 0, 0.5); /* Ajout de l'ombre à droite */
+}
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar a {
+    color: #080808;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: #f7f5f5;
+  }
+  

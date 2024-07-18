@@ -1,0 +1,47 @@
+/* form.component.css */
+
+:host {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../../../assets/4239788.jpg');
+    background-size: cover;
+}
+
+form {
+    width: 500px;
+    padding: 20px;
+    background: hsl(34,44%,69%);
+    border-radius: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.custom-heading-right {
+    margin-right: 17rem;
+    text-align: right;
+    color: rgb(5, 5, 5);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .required::after {
+    content: " *";
+    color: red;
+}

@@ -1,0 +1,111 @@
+<div class="risqueAnalyse-container">
+    <div class="main-content" style="margin-top: 20px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title" style="margin-left: 15px;"> <strong>Risque Analyse</strong> </h4>
+                        </div>
+                        <div class="content" style="margin-top: 20px;">
+                            <form #form="ngForm" (ngSubmit)="addRA()">
+                                <div class="row">
+                                    <div class="col-md-5" style="margin-left: 15px;">
+                                        <label>Id Demande</label>
+                                        <input type="text" class="form-control" disabled id="iddemande" name="iddemande" [(ngModel)]="risqueanalyserequest.idDemande">
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="row">
+                                    <div class="col-md-5 me-3" style="margin-left: 15px;">
+                                        <label for="evalProjet" class="form-label required"> Évaluation du Projet </label>
+                                        <select class="form-select" id="evalProjet" name="evalProjet" [(ngModel)]="risqueanalyserequest.evalProjet" [disabled]="!isStatutConvenable()" required>
+                                            <option *ngFor="let verif of evalsProjet" [value]="verif">{{ verif }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label for="evalRisqueClient" class="form-label required">Évaluation du Risque Client</label>
+                                        <select class="form-select" id="evalRisqueClient" name="evalRisqueClient" [(ngModel)]="risqueanalyserequest.evalRisqueClient" [disabled]="!isStatutConvenable()" required>
+                                            <option *ngFor="let verif of evalsRisqueClient" [value]="verif">{{ verif }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+                                <div class="row">
+                                    <div class="col-md-5 me-3" style="margin-left: 15px;">
+                                        <label for="evalRisqueCommercial" class="form-label required"> Évaluation du Risque Commercial </label>
+                                        <select class="form-select" id="evalRisqueCommercial" name="evalRisqueCommercial" [(ngModel)]="risqueanalyserequest.evalRisqueCommercial" [disabled]="!isStatutConvenable()" required>
+                                            <option *ngFor="let verif of evalsRisqueCommercial" [value]="verif">{{ verif }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label for="evalGaranties" class="form-label required"> Évaluation des Garanties </label>
+                                        <select class="form-select" id="evalGaranties" name="evalGaranties" [(ngModel)]="risqueanalyserequest.evalGaranties" [disabled]="!isStatutConvenable()" required>
+                                            <option *ngFor="let verif of evalsGaranties" [value]="verif">{{ verif }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="row">
+                                    <div class="col-11 me-3" style="margin-left: 15px;">
+                                        <label for="recommandationAnalyste" class="form-label required"> Recommandation de l'Analyste </label>
+                                        <textarea class="form-control" id="recommandationAnalyste" name="recommandationAnalyste" [(ngModel)]="risqueanalyserequest.recommandationAnalyste" [disabled]="!isStatutConvenable()" required></textarea>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="row">
+                                    <div class="col-11" style="margin-left: 15px;">
+                                        <label for="commentaires" class="form-label"> Commentaires </label>
+                                        <textarea class="form-control" id="commentaires" name="commentaires" [(ngModel)]="risqueanalyserequest.commentaires" [disabled]="!isStatutConvenable()"></textarea>
+                                    </div>
+                                </div>
+
+                                
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                 
+                                <div class="form-group">
+                                    <button  type="submit" class="btn btn-info btn-fill" [disabled]="!isStatutConvenable()">Enregistrer</button>
+                                    
+                                  </div>
+                                  <div class="alert alert-success" *ngIf="successMessage">{{ successMessage }}</div>
+                                <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                            </form>
+                        
+                            <div class="clearfix"></div>
+                  
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-md-4" style="margin-top: 20px;">
+                    <div class="col-md-4">
+                        <div class="card border-primary mb-3" style="width: 390px;">
+                            <div class="card-header" style="background-color: #b98137; color: white;">
+                                <h4 *ngIf="demanded && demanded.typeClient === 'Client Particulier'" class="title text-center">
+                                    Les informations du <a [routerLink]="['/nav/edit-client', demanded.idClientParticulier]" style="color: white;">client</a>
+                                </h4>
+                                <h4 *ngIf="demanded && demanded.typeClient === 'Client Entreprise'" class="title text-center">
+                                    Les informations du <a [routerLink]="['/nav/edit-clientEntreprise', demanded.idClientEntreprise]" style="color: white;">client</a>
+                                </h4>
+                            </div>
+                            <div class="card-body text-primary">
+                                <div *ngIf="demanded" class="title text-center" style="margin-bottom: 20px;">
+                                    <p class="card-text"><strong>Nom du Client:</strong> {{ demanded.nomClient }}</p>
+                                    <p class="card-text"><strong>Type du Client:</strong> {{ demanded.typeClient }}</p>
+                                    <p class="card-text"><strong>Identité Client:</strong> {{ demanded.identiteClient }}</p>
+                                    <p class="card-text"><strong>Nom Agence:</strong> {{ demanded.nomAgence }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group text-end" >
+                    <button type="button" class="btn btn-success" (click)="updatestatut(risqueanalyserequest.idDemande!, 'Comité')" [disabled]="!isStatutConvenable()" >Valider</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="editGarant-container">
+
+
+    <!-- Formulaire et tableau pour les Garants -->
+    <div class="row">
+        <!-- Formulaire pour les Garants -->
+        <div class="col-lg-4 mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Garants</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="updategarant()">
+                            <div class="mb-3">
+                                <label for="Nom" class="form-label">Nom du Garant</label>
+                                <input type="text" class="form-control" id="Nom" name="Nom" [(ngModel)]="addgarantrequest.nomGarant" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Identit" class="form-label">Identité du Garant</label>
+                                <input type="text" class="form-control" id="Identit" name="DureIdentite" [(ngModel)]="addgarantrequest.identiteGarant" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Relation" class="form-label">Relation avec le client</label>
+                                <select class="form-select" id="Relation" name="Relation" [(ngModel)]="selectedRelationId" (change)="onGarantSelected()" required>
+                                    <option *ngFor="let relation of relationsClientGarant" [value]="relation.idRelationClientGarant">{{ relation.relation }}</option>  
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="telephone" class="form-label">Téléphone</label>
+                                <input type="text" class="form-control" id="telephone" name="telephone" [(ngModel)]="addgarantrequest.telephone" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            <button type="button" class="btn btn-danger" (click)="deleteGarant(addgarantrequest.idGarant!)">Supprimer le Garant</button>
+                        </form>
+                        <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>
+</div>

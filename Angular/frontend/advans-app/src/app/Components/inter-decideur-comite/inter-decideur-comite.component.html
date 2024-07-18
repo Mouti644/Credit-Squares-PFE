@@ -1,0 +1,84 @@
+<div class="interdecideur-container">
+    <div class="main-content" style="margin-top: 20px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title" style="margin-left: 15px;"><strong>Interactivité du Décideur</strong></h4>
+                        </div>
+                        <div class="content" style="margin-top: 20px;">
+                            <form #form="ngForm" (ngSubmit)="addInterDecideur()">
+                                <div class="row">
+                                    <div class="col-md-5" style="margin-left: 15px;">
+                                <div class="form-group" >
+                                    <label for="iddemande" class="form-label">Décideur</label>
+                                    <input type="text" class="form-control" disabled id="iddemande" name="iddemande" [(ngModel)]="userName">
+                                </div>
+                            </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="row">
+                                    <div class="col-11" style="margin-left: 15px;">
+                                        <label for="reponse" class="form-label required"> Réponse </label>
+                                        <textarea class="form-control" id="reponse" name="reponse" [(ngModel)]="interactiviterequest.reponse" [disabled]="!isStatutConvenable()" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+                                <div class="row">
+                                    <div class="col-11" style="margin-left: 15px;">
+                                        <label for="remarque" class="form-label" > Remarque </label>
+                                        <textarea class="form-control" id="remarque" name="remarque" [(ngModel)]="interactiviterequest.remarque" [disabled]="!isStatutConvenable()"></textarea>
+                                    </div>
+                                </div>
+
+                            
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info btn-fill pull-right" [disabled]="!isStatutConvenable()">Enregistrer</button>
+                                </div>
+                                <div class="alert alert-success" *ngIf="successMessage">{{ successMessage }}</div>
+                                <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                            </form>
+                        
+                            <div class="clearfix"></div>
+                  
+                        </div>
+                    </div>
+                </div>
+    
+                
+    
+                <div class="col-md-4" style="margin-top: 20px;">
+                    <div class="col-md-4">
+                        <div class="card border-primary mb-3" style="width: 390px;">
+                            <div class="card-header" style="background-color: #b98137; color: white;">
+                                <h4 *ngIf="demanded && demanded.typeClient === 'Client Particulier'" class="title text-center">
+                                    Les informations du <a [routerLink]="['/nav/edit-client', demanded.idClientParticulier]" style="color: white;">client</a>
+                                </h4>
+                                <h4 *ngIf="demanded && demanded.typeClient === 'Client Entreprise'" class="title text-center">
+                                    Les informations du <a [routerLink]="['/nav/edit-clientEntreprise', demanded.idClientEntreprise]" style="color: white;">client</a>
+                                </h4>
+                            </div>
+                            <div class="card-body text-primary">
+                                <div *ngIf="demanded" class="title text-center" style="margin-bottom: 20px;">
+                                    <p class="card-text"><strong>Nom du Client:</strong> {{ demanded.nomClient }}</p>
+                                    <p class="card-text"><strong>Type du Client:</strong> {{ demanded.typeClient }}</p>
+                                    <p class="card-text"><strong>Identité Client:</strong> {{ demanded.identiteClient }}</p>
+                                    <p class="card-text"><strong>Nom Agence:</strong> {{ demanded.nomAgence }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-end" style="margin-top: 150px;">
+                    <button type="button" class="btn btn-success" (click)="versComite()" [disabled]="!isUserConvenable()" >Décision finale</button>
+
+                </div>
+                
+        </div>
+    </div>
+</div>

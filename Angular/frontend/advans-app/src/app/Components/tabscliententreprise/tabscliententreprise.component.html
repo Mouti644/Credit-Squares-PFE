@@ -1,0 +1,487 @@
+
+      <div class="dropdown aa" style="margin-left: 15px;">
+        <button class="dropdown-toggle custom-dropdown-button" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ getSelectedTabLabel() }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item custom-dropdown-item" (click)="selectTab('Depenses')">Dépenses</a></li>
+          <li><a class="dropdown-item custom-dropdown-item" (click)="selectTab('CompteBancaire')">Comptes Bancaires</a></li>
+          <li><a class="dropdown-item custom-dropdown-item" (click)="selectTab('CreditRecent')">Crédits Récents</a></li>
+          <li><a class="dropdown-item custom-dropdown-item" (click)="selectTab('CompteEntreprise')">Comptes Entreprise</a></li>
+          <li><a class="dropdown-item custom-dropdown-item"  (click)="selectTab('PointVente')">Points de vente</a></li>
+          <li><a class="dropdown-item custom-dropdown-item" (click)="selectTab('Ventes')">Ventes</a></li>
+          <li><a class="dropdown-item custom-dropdown-item" (click)="selectTab('Approvisionnements')">Approvisionnements</a></li>
+        </ul>
+      </div>
+
+  
+
+<div class="container my-5 row justify-content-end">
+    <!-- Sélection de type -->
+  
+
+    <!-- Depenses -->
+    <div class="row">
+       
+        <div class="col-lg-4 mt-3" *ngIf="tabsSelectionne === 'Depenses'">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Dépenses</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="addDepenses()">
+                            <div class="mb-3">
+                                <label for="depenses" class="form-label">Dépenses</label>
+                                <input type="text" class="form-control" id="depenses" name="depenses" [(ngModel)]="addDepenserequest.depenses" required>
+                            </div>
+                            <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                            <div class="mb-3">
+                                <label for="coutTotal" class="form-label">Coût Total</label>
+                                <input type="text" class="form-control" id="coutTotal" name="coutTotal" [(ngModel)]="addDepenserequest.coutTotal" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </form>
+                        <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </div>
+    
+
+        <!-- Tableau  -->
+        <div class="col-lg-8 mt-3" *ngIf="tabsSelectionne === 'Depenses'">
+            <table class="table">
+                <thead>
+                    <tr class="bck">
+                        <th>Dépenses</th>
+                        <th>Coût Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let depense of depenses">
+                        <td>{{depense.depenses}}</td>
+                        <td>{{depense.coutTotal}}</td>
+                       <td><a [routerLink]="['/nav/edit-depenses/', depense.idDepense]" (click)="editDepenses(depense)" >Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Comptes Bancaires -->
+    <div class="row">
+        
+        <div class="col-lg-6" *ngIf="tabsSelectionne === 'CompteBancaire'">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Comptes Bancaires</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="addCompteBancaireEntreprise()">
+                        <div class="mb-3">
+                            <label for="Banque" class="form-label">Banque</label>
+                            <input type="text" class="form-control" id="Banque" name="Banque" [(ngModel)]="addCompteBancaireEntrepriserequest.banque" required>
+                        </div>
+                        <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                        <div class="mb-3">
+                            <label for="Typecompteban" class="form-label">Type du compte</label>
+                            <select class="form-select" id="Typecompteban" name="Typecompteban" [(ngModel)]="addCompteBancaireEntrepriserequest.typeCompte" required>
+                                <option *ngFor="let type of typesCompte" [value]="type">{{ type }}</option>
+                                </select>
+                        </div>
+                        <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                        <div class="mb-3">
+                            <label for="Solde" class="form-label">Solde</label>
+                            <input type="text" class="form-control" id="Solde" name="Solde" [(ngModel)]="addCompteBancaireEntrepriserequest.solde" required>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau  -->
+        <div class="col-lg-6" *ngIf="tabsSelectionne === 'CompteBancaire'">
+            <table class="table">
+                <thead>
+                    <tr>
+                        
+                        <th>Banque</th>
+                        <th>Type du compte</th>
+                        <th>Solde</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let compteBancaireEntreprise of comptesBancaireEntreprise">
+                        
+                        <td>{{compteBancaireEntreprise.banque}}</td>
+                        <td>{{compteBancaireEntreprise.typeCompte}}</td>
+                        <td>{{compteBancaireEntreprise.solde}}</td>
+                       <td><a [routerLink]="['/nav/edit-comptebancaireentreprise/', compteBancaireEntreprise.idCompteBanq]" (click)="editCompteBancaireentreprise(compteBancaireEntreprise)">Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+     <!-- Crédits Récents -->
+     <div class="row">
+       
+        <div class="col-lg-4 mt-3" *ngIf="tabsSelectionne === 'CreditRecent'">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Crédits Récents</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="addCreditRecentEntreprise()">
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="Objet" class="form-label">Objet</label>
+                                        <input type="text" class="form-control" id="Objet" name="Objet" [(ngModel)]="addcreditRecentrequest.objet" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="Duree" class="form-label">Durée</label>
+                                        <input type="text" class="form-control" id="Duree" name="Duree" [(ngModel)]="addcreditRecentrequest.duree" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="montantInitial" class="form-label">Montant Initial</label>
+                                        <input type="text" class="form-control" id="montantInitial" name="montantInitial" [(ngModel)]="addcreditRecentrequest.montantInitial" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="enCoursRestant" class="form-label">Crédits en cours restants</label>
+                                        <input type="text" class="form-control" id="enCoursRestant" name="enCoursRestant" [(ngModel)]="addcreditRecentrequest.enCoursRestant" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="montantEchMens" class="form-label">Montant de l'échéance mensuelle </label>
+                                        <input type="text" class="form-control" id="montantEchMens" name="montantEchMens" [(ngModel)]="addcreditRecentrequest.montantEchMens" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    
+                            <div class="mb-3">
+                                <label for="nbrEchRestant" class="form-label">Nombre d'échéances restantes</label>
+                                <input type="text" class="form-control" id="nbrEchRestant" name="nbrEchRestant" [(ngModel)]="addcreditRecentrequest.nbrEchRestant" required>
+                            </div>
+                                </div>
+                                <div class="col">
+                            <div class="mb-3">
+                                <label for="nbrEchEnRetard" class="form-label">Nombre d'échéances en retard</label>
+                                <input type="text" class="form-control" id="nbrEchEnRetard" name="nbrEchEnRetard" [(ngModel)]="addcreditRecentrequest.nbrEchEnRetard" required>
+                            </div>
+                        </div>
+                        
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="nbrMaxJoursEnRetard" class="form-label">Nombre maximal de jours en retard</label>
+                                    <input type="text" class="form-control" id="nbrMaxJoursEnRetard" name="nbrMaxJoursEnRetard" [(ngModel)]="addcreditRecentrequest.nbrMaxJoursEnRetard" required>
+                                </div>
+                            </div>
+                           
+                          
+                           
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </form>
+                        <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau  -->
+        <div class="col-lg-8 mt-3" *ngIf="tabsSelectionne === 'CreditRecent'">
+            <table class="table">
+                <thead>
+                    <tr>
+                        
+                        <th>Objet</th>
+                        <th>Durée</th>
+                        <th>Montant Initial</th>
+                        <th>Crédits en cours restants</th>
+                       
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let creditRecent of creditsRecent">
+                       
+                        <td>{{creditRecent.objet}}</td>
+                        <td>{{creditRecent.duree}}</td>
+                        <td>{{creditRecent.montantInitial}}</td>
+                        <td>{{creditRecent.enCoursRestant}}</td>
+                       
+                        
+                        <td><a [routerLink]="['/nav/edit-creditrecententreprise/', creditRecent.idCRecent]" (click)="editcreditRecent(creditRecent)" >Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Comptes Entreprise -->
+    <div class="row">
+        <!-- Formulaire pour les Garanties -->
+        <div class="col-lg-6" *ngIf="tabsSelectionne === 'CompteEntreprise'">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Comptes Entreprise</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="addCompteEntreprise()">
+                        <div class="mb-3">
+                            <label for="dateOuvertureCompte" class="form-label">Date d'ouverture du compte</label>
+                            <input type="date" class="form-control" id="dateOuvertureCompte" name="dateOuvertureCompte" [(ngModel)]="addCompteEntrepriserequest.dateOuvertureCompte" required>
+                        </div>
+                        <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                        <div class="mb-3">
+                            <label for="deviseCompte" class="form-label">Devise du compte</label>
+                            <input type="text" class="form-control" id="deviseCompte" name="deviseCompte" [(ngModel)]="addCompteEntrepriserequest.deviseCompte" required>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau  -->
+        <div class="col-lg-6" *ngIf="tabsSelectionne === 'CompteEntreprise'">
+            <table class="table">
+                <thead>
+                    <tr>
+                        
+                        <th>Date d'ouverture du compte</th>
+                        <th>Devise du compte</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let compteEntreprise of comptesEntreprise">
+                        
+                        <td>{{compteEntreprise.dateOuvertureCompte}}</td>
+                        <td>{{compteEntreprise.deviseCompte}}</td>
+                        
+                       <td><a [routerLink]="['/nav/edit-compteentreprise/', compteEntreprise.idCompteEntreprise]" (click)="editCompteentreprise(compteEntreprise)">Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+     <!-- Ventes -->
+     <div class="row">
+        <!-- Formulaire pour les Garanties -->
+        <div class="col-lg-6" *ngIf="tabsSelectionne === 'Ventes'">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Ventes</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="addVente()">
+                        <div class="mb-3">
+                            <label for="frequence" class="form-label">Fréquence</label>
+                            <select class="form-select" id="frequence" name="frequence" [(ngModel)]="addVenterequest.frequence" required>
+                                <option *ngFor="let frequence of frequences" [value]="frequence">{{ frequence }}</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="deviseCompte" class="form-label">Valeur Moyenne</label>
+                            <input type="number" class="form-control" id="deviseCompte" name="deviseCompte" [(ngModel)]="addVenterequest.valeurMoyenne" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="deviseCompte" class="form-label">Valeur Basse</label>
+                            <input type="number" class="form-control" id="deviseCompte" name="deviseCompte" [(ngModel)]="addVenterequest.valeurBasse" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="deviseCompte" class="form-label">Valeur Haute</label>
+                            <input type="number" class="form-control" id="deviseCompte" name="deviseCompte" [(ngModel)]="addVenterequest.valeurHaute" required>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau  -->
+        <div class="col-lg-6" *ngIf="tabsSelectionne === 'Ventes'">
+            <table class="table">
+                <thead>
+                    <tr>
+                        
+                        <th>Fréquence</th>
+                        <th>Valeur Moyenne</th>
+                        <th>Valeur Basse</th>
+                        <th>Valeur Haute</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vente of ventes">
+                        
+                        <td>{{vente.frequence}}</td>
+                        <td>{{vente.valeurMoyenne}}</td>
+                        <td>{{vente.valeurBasse}}</td>
+                        <td>{{vente.valeurHaute}}</td>
+                        
+                       <td><a [routerLink]="['/nav/edit-vente/', vente.idvente]" (click)="editvente(vente)">Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+     <!-- Appros -->
+     <div class="row">
+        <!-- Formulaire pour les Garanties -->
+        <div class="col-lg-6" *ngIf="tabsSelectionne === 'Approvisionnements'">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Approvisionnements</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="addAppro()">
+                            <div class="mb-3">
+                                <label for="frequencee" class="form-label">Fréquence</label>
+                                <select class="form-select" id="frequencee" name="frequencee" [(ngModel)]="addApprorequest.frequence" required>
+                                    <option *ngFor="let frequence of frequences" [value]="frequence">{{ frequence }}</option>
+                                </select>
+                            </div>
+                            <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                            <div class="mb-3">
+                                <label for="montantMoyen" class="form-label">Montant Moyen</label>
+                                <input type="number" class="form-control" id="montantMoyen" name="montantMoyen" [(ngModel)]="addApprorequest.montantMoyen" required>
+                            </div>
+                       
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau  -->
+        <div class="col-lg-6" *ngIf="tabsSelectionne === 'Approvisionnements'">
+            <table class="table">
+                <thead>
+                    <tr>
+                        
+                        <th>Fréquence</th>
+                        <th>Montant Moyen</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let appro of appros">
+                        
+                        <td>{{appro.frequence}}</td>
+                        <td>{{appro.montantMoyen}}</td>
+                        
+                       <td><a [routerLink]="['/nav/edit-approvisionnement/', appro.idAppro]" (click)="editAppro(appro)">Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+     <!-- Points Ventes -->
+     <div class="row">
+        <!-- Formulaire pour les Garanties -->
+        <div class="col-lg-6" *ngIf="tabsSelectionne === 'PointVente'">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Points de vente</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="addPointVente()">
+                            <div class="mb-3">
+                                <label for="propriete" class="form-label">Propriété</label>
+                                <select class="form-select" id="propriete" name="propriete" [(ngModel)]="addPointVenterequest.propriete" required>
+                                    <option *ngFor="let propriete of proprietes" [value]="propriete">{{ propriete }}</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nbrJoursOuverture" class="form-label">Nombre de Jours d'Ouverture</label>
+                                <input type="text" class="form-control" id="nbrJoursOuverture" name="nbrJoursOuverture" [(ngModel)]="addPointVenterequest.nbrJoursOuverture" required>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="Surface" class="form-label">Surface</label>
+                                    <input type="text" class="form-control" id="Surface" name="Surface" [(ngModel)]="addPointVenterequest.surface" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="Emplacement" class="form-label">Emplacement</label>
+                                    <input type="text" class="form-control" id="Emplacement" name="Emplacement" [(ngModel)]="addPointVenterequest.emplacement" required>
+                                </div>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="Type" class="form-label">Type de point de vente</label>
+                                <select class="form-select" id="Type" name="Type" [(ngModel)]="selectedtypeId" (change)="onTypepointVenteSelected()" required>
+                                    <option *ngFor="let type of typesPointVente" [value]="type.idTypePointVente">{{ type.type }}</option>  
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+
+        <!-- Tableau  -->
+        <div class="col-lg-6" *ngIf="tabsSelectionne === 'PointVente'">
+            <table class="table">
+                <thead>
+                    <tr>
+                        
+                        <th>Propriété</th>
+                        <th>Nombre de Jours d'Ouverture</th>
+                        <th>Surface</th>
+                        <th>Emplacement</th>
+                        <th>Type de point de vente</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pointvente of pointsVente">
+                        
+                        <td>{{pointvente.propriete}}</td>
+                        <td>{{pointvente.nbrJoursOuverture}}</td>
+                        <td>{{pointvente.surface}}</td>
+                        <td>{{pointvente.emplacement}}</td>
+                        <td>{{pointvente.type}}</td>
+                        
+                       <td><a [routerLink]="['/nav/edit-pointvente/', pointvente.idPV]" (click)="editPointVente(pointvente)">Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+    <div style="margin-right: -1000px;">
+        <button type="submit" class="terminer" (click)="Terminer()">Terminer</button>
+      </div>
+
+</div>

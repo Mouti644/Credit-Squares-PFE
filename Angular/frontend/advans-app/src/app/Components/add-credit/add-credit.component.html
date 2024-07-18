@@ -1,0 +1,43 @@
+
+  <div class="container my-5 row justify-content-end">
+    
+      <div class="col-6">
+        <h2 class="custom-heading-right"><strong>Nouvelle demande</strong></h2>
+          <form #form="ngForm" (ngSubmit)="addCredit()">
+
+            <div class="mb-3">
+                <label for="montant" class="form-label required">Montant demandé (En TND)</label>
+                <input type="number" class="form-control" id="montant" name="montant" [(ngModel)]="addcreditrequest.montant" required>
+          </div>
+
+            <div class="mb-3">
+                <label for="Duree" class="form-label required">Durée demandée (En mois)</label>
+                <input type="number" class="form-control" id="Duree" name="Duree" [(ngModel)]="addcreditrequest.dureeDemandee" required>
+          </div>
+            
+            
+              
+            <div class="mb-3">
+                  <label for="Produit" class="form-label required">Produit</label>
+                  <select class="form-select" id="Produit" name="Produit" [(ngModel)]="selectedProduitId" (change)="onProduitSelected()" required>
+                    <option *ngFor="let produit of produits" [value]="produit.idProduit">{{ produit.nomProduit }}</option>
+                    
+                      
+                  </select>
+            </div>
+              
+            <div class="mb-3">
+              <label for="commentaire" class="form-label">Commentaire</label>
+              <input type="text" class="form-control" id="commentaire" name="commentaire" [(ngModel)]="addcreditrequest.commentaires">
+            </div>
+               
+              <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+            <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+           
+
+      </div>
+
+  </div>
+

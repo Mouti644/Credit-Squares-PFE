@@ -1,0 +1,22 @@
+.dashboard-container {
+    max-width: 3000px; /* Ajustez selon vos besoins */
+    margin: 0 auto; /* Centrer le contenu horizontalement */
+    padding: 20px; /* Ajoutez un peu d'espace autour du contenu */
+    color:black;
+    background-color: #ffffff;
+  }
+
+  .sex{
+    width: 280px;
+  }
+  .date{
+    width: 280px;
+  }
+
+  .chart-container {
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+}

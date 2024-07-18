@@ -1,0 +1,75 @@
+<div class="dashboard-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="chart-container">
+          <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [legend]="barChartLegend">
+          </canvas>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="chart-container">
+          <canvas baseChart
+                  [datasets]="demandesChartData"
+                  [labels]="demandesChartLabels"
+                  [options]="demandesChartOptions"
+                  [legend]="demandesChartLegend">
+          </canvas>
+        </div>
+      </div>
+      <div style="margin-bottom: 40px;"></div> <!-- Ajouter un espacement vertical -->
+      <div class="col-md-6">
+        <div class="chart-container">
+          <canvas baseChart
+            [type]="demandesParMontantChartType"
+            [datasets]="demandesParMontantChartData"
+            [labels]="demandesParMontantChartLabels"
+            [options]="demandesParMontantChartOptions"
+            [legend]="demandesParMontantChartLegend">
+          </canvas>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="chart-container">
+          <canvas baseChart
+                  [datasets]="demandesStatutChartData"
+                  [labels]="demandesStatutLabels"
+                  [options]="demandesStatutOptions"
+                  [legend]="demandesStatutLegend"
+                  [type]="demandesStatutType">
+          </canvas>
+        </div>
+      </div>
+      <div style="margin-bottom: 40px;"></div> <!-- Ajouter un espacement vertical -->
+      
+      <div class="col-md-6 produit" style="margin-right: 200px;">
+        <div class="chart-container">
+          <canvas baseChart
+                  [datasets]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [options]="pieChartOptions"
+                  [legend]="pieChartLegend"
+                  [type]="pieChartType">
+          </canvas>
+        </div>
+      </div>
+      
+      <div class="col-md-6 date" >
+        
+        <div class="chart-container">
+          <canvas baseChart
+                  [datasets]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [options]="doughnutChartOptions"
+                  [legend]="doughnutChartLegend"
+                  [type]="doughnutChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

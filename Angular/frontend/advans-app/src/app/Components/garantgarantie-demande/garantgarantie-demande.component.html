@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="row justify-content-start align-items-center mb-6" style="margin-top: -100px;">
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary">Garants</button>
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn custom-button" routerLink="/nav/add-garantie">Garanties</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Formulaire pour les Garants -->
+        <div class="col-lg-4 mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Garants</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="addGarant()">
+                            <div class="mb-3">
+                                <label for="Nom" class="form-label">Nom du Garant</label>
+                                <input type="text" class="form-control" id="Nom" name="Nom" [(ngModel)]="addgarantrequest.nomGarant" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Identit" class="form-label">Identité du Garant</label>
+                                <input type="text" class="form-control" id="Identit" name="DureIdentite" [(ngModel)]="addgarantrequest.identiteGarant" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Relation" class="form-label">Relation avec le client</label>
+                                <select class="form-select" id="Relation" name="Relation" [(ngModel)]="selectedRelationId" (change)="onGarantSelected()" required>
+                                    <option *ngFor="let relation of relationsClientGarant" [value]="relation.idRelationClientGarant">{{ relation.relation }}</option>  
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="telephone" class="form-label">Téléphone</label>
+                                <input type="text" class="form-control" id="telephone" name="telephone" [(ngModel)]="addgarantrequest.telephone" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary enregistrer">Enregistrer</button>
+                        </form>
+                        <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau pour les Garants -->
+        <div class="col-lg-8 mt-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id demande</th>
+                        <th>Nom du Garant</th>
+                        <th>Identité du Garant</th>
+                        <th>Relation avec le client</th>
+                        <th>Téléphone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let garant of garant">
+                        <td>{{garant.idDemande}}</td>
+                        <td>{{garant.nomGarant}}</td>
+                        <td>{{garant.identiteGarant}}</td>
+                        <td>{{garant.relation}}</td>
+                        <td>{{garant.telephone}}</td>
+                        
+                        <td><a [routerLink]="['/nav/edit-garant/', garant.idGarant]" (click)="editGarant(garant)">Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+    <div style="margin-left: 1000px;">
+        <button type="submit" class="terminer" (click)="Terminer()">Terminer</button>
+    </div>
+</div>

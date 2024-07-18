@@ -1,0 +1,100 @@
+<div class="visiteManagement-container">
+    <div class="main-content" style="margin-top: 20px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title" style="margin-left: 15px;"><strong>Visite Management</strong></h4>
+                        </div>
+                        <div class="content" style="margin-top: 20px;">
+                            <form #form="ngForm" (ngSubmit)="updateVM()">
+                                <div class="row">
+                                    <div class="col-md-5" style="margin-left: 15px;">
+                                <div class="form-group" >
+                                    <label for="iddemande" class="form-label">Id Demande</label>
+                                    <input type="text" class="form-control" disabled id="iddemande" name="iddemande" [(ngModel)]="visiteManagementrequest.idDemande">
+                                </div>
+                            </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="row">
+                                    <div class="col-11" style="margin-left: 15px;">
+                                        <label for="elementAverifier" class="form-label required"> Éléments à Vérifier </label>
+                                        <textarea class="form-control" id="elementAverifier" name="elementAverifier" [(ngModel)]="visiteManagementrequest.elementAverifier" [disabled]="!isStatutConvenable()" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+                                <div class="row">
+                                    <div class="col-11" style="margin-left: 15px;">
+                                        <label for="elementRecueillis" class="form-label required"> Éléments Recueillis </label>
+                                        <textarea class="form-control" id="elementRecueillis" name="elementRecueillis" [(ngModel)]="visiteManagementrequest.elementRecueillis" [disabled]="!isStatutConvenable()" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+                                <div class="row">
+                                    <div class="col-11" style="margin-left: 15px;">
+                                        <label for="decision" class="form-label required"> Décision </label>
+                                        <select class="form-select" id="decision" name="decision" [(ngModel)]="visiteManagementrequest.decision" [disabled]="!isStatutConvenable()" required>
+                                            <option *ngFor="let dec of decisions" [value]="dec">{{ dec }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                
+                                 
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info btn-fill" [disabled]="!isStatutConvenable()">Mettre à jour</button>
+                                    
+                                  </div>
+                                  <div class="alert alert-success" *ngIf="successMessage">{{ successMessage }}</div>
+                                <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                            </form>
+                        
+                            <div class="clearfix"></div>
+                  
+                        </div>
+                    </div>
+                </div>
+    
+                
+    
+                <div class="col-md-4" style="margin-top: 20px;">
+                    <div class="col-md-4">
+                        <div class="card border-primary mb-3" style="width: 390px;">
+                            <div class="card-header" style="background-color: #b98137; color: white;">
+                                <h4 *ngIf="demanded && demanded.typeClient === 'Client Particulier'" class="title text-center">
+                                    Les informations du <a [routerLink]="['/nav/edit-client', demanded.idClientParticulier]" style="color: white;">client</a>
+                                </h4>
+                                <h4 *ngIf="demanded && demanded.typeClient === 'Client Entreprise'" class="title text-center">
+                                    Les informations du <a [routerLink]="['/nav/edit-clientEntreprise', demanded.idClientEntreprise]" style="color: white;">client</a>
+                                </h4>
+                            </div>
+                            <div class="card-body text-primary">
+                                <div *ngIf="demanded" class="title text-center" style="margin-bottom: 20px;">
+                                    <p class="card-text"><strong>Nom du Client:</strong> {{ demanded.nomClient }}</p>
+                                    <p class="card-text"><strong>Type du Client:</strong> {{ demanded.typeClient }}</p>
+                                    <p class="card-text"><strong>Identité Client:</strong> {{ demanded.identiteClient }}</p>
+                                    <p class="card-text"><strong>Nom Agence:</strong> {{ demanded.nomAgence }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-end">
+                    <button type="button" class="btn btn-success" 
+                            [hidden]="visiteManagementrequest.decision !== 'Approuvé'"
+                            (click)="updatestatut(visiteManagementrequest.idDemande, 'Prêt à décaisser')" [disabled]="!isStatutConvenable()">Valider</button>
+                
+                    <button type="button" class="btn btn-danger" 
+                            [hidden]="visiteManagementrequest.decision !== 'Rejeté'"
+                            (click)="updatestatut(visiteManagementrequest.idDemande, 'Refusé')" [disabled]="!isStatutConvenable()">Rejeter</button>
+                </div>
+        </div>
+    </div>
+</div>

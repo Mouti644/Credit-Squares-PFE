@@ -1,0 +1,79 @@
+<div class="edit-container">
+    <div class="row">
+       
+        <div class="col-lg-4 mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Crédits Récents</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="updateCRE()">
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="Objet" class="form-label">Objet</label>
+                                        <input type="text" class="form-control" id="Objet" name="Objet" [(ngModel)]="addcreditRecentrequest.objet" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="Duree" class="form-label">Durée</label>
+                                        <input type="text" class="form-control" id="Duree" name="Duree" [(ngModel)]="addcreditRecentrequest.duree" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="montantInitial" class="form-label">Montant Initial</label>
+                                        <input type="text" class="form-control" id="montantInitial" name="montantInitial" [(ngModel)]="addcreditRecentrequest.montantInitial" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="enCoursRestant" class="form-label">Crédits en cours restants</label>
+                                        <input type="text" class="form-control" id="enCoursRestant" name="enCoursRestant" [(ngModel)]="addcreditRecentrequest.enCoursRestant" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="montantEchMens" class="form-label">Montant de l'échéance mensuelle </label>
+                                        <input type="text" class="form-control" id="montantEchMens" name="montantEchMens" [(ngModel)]="addcreditRecentrequest.montantEchMens" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    
+                            <div class="mb-3">
+                                <label for="nbrEchRestant" class="form-label">Nombre d'échéances restantes</label>
+                                <input type="text" class="form-control" id="nbrEchRestant" name="nbrEchRestant" [(ngModel)]="addcreditRecentrequest.nbrEchRestant" required>
+                            </div>
+                                </div>
+                                <div class="col">
+                            <div class="mb-3">
+                                <label for="nbrEchEnRetard" class="form-label">Nombre d'échéances en retard</label>
+                                <input type="text" class="form-control" id="nbrEchEnRetard" name="nbrEchEnRetard" [(ngModel)]="addcreditRecentrequest.nbrEchEnRetard" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="nbrMaxJoursEnRetard" class="form-label">Nombre maximal de jours en retard</label>
+                                <input type="text" class="form-control" id="nbrMaxJoursEnRetard" name="nbrMaxJoursEnRetard" [(ngModel)]="addcreditRecentrequest.nbrMaxJoursEnRetard" required>
+                            </div>
+                        </div>
+                            </div>
+                           
+                          
+                           
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            <button type="button" class="btn btn-danger" (click)="deleteCRE(addcreditRecentrequest.idCRecent)">Supprimer</button>
+                        </form>
+                        <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

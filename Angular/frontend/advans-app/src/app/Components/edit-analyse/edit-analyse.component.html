@@ -1,0 +1,201 @@
+<div class="analyse-container">
+    <div class="main-content" style="margin-top: 20px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title" style="margin-left: 15px;"><strong>Analyse</strong></h4>
+                        </div>
+                        <div class="content" style="margin-top: 20px;">
+                            <form #form="ngForm" (ngSubmit)="updateAnalyse()">
+                                <div class="row">
+                                    <div class="col-md-5" style="margin-left: 15px;">
+                                <div class="form-group" >
+                                    <label>Id Demande</label>
+                                    <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                    <input type="text" class="form-control" disabled id="iddemande" name="iddemande" [(ngModel)]="analyserequest.idDemande">
+                                </div>
+                            </div>
+                            
+                                </div>
+
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label class="required">Pertinence du Projet</label>
+                                    <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                    <input type="text" class="form-control" id="pertinenceProjet" name="pertinenceProjet" [(ngModel)]="analyserequest.pertinenceProjet" [disabled]="!isStatutAnalyse()" required>
+                                </div>
+
+                                <div style="margin-bottom: 60px;"></div> <!-- Add vertical spacing -->
+                                <label for="exampleInputEmail1" style="margin-left: 15px;"><strong>Crédits Récents</strong></label>
+                                <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                <table class="table" style="margin-left: 15px;" >
+                                    <thead>
+                                        <tr>
+                                            <th>Id Client</th>
+                                            <th>Objet</th>
+                                            <th>Durée</th>
+                                            <th>Montant Initial</th>
+                                            <th>Crédits en cours restants</th>
+                                           
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let creditRecent of creditRecent">
+                                            <td>{{creditRecent.idClientParticulier}}</td>
+                                            <td>{{creditRecent.objet}}</td>
+                                            <td>{{creditRecent.duree}}</td>
+                                            <td>{{creditRecent.montantInitial}}</td>
+                                            <td>{{creditRecent.enCoursRestant}}</td>
+                                           
+                                            
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label class="required" for="exampleInputEmail1">Historique de Crédit du Client</label>
+                                    <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                    <input type="text" class="form-control" id="historiqueCreditClient" name="historiqueCreditClient" [(ngModel)]="analyserequest.historiqueCreditClient" [disabled]="!isStatutAnalyse()" required>
+                                </div>
+                                <div style="margin-bottom: 60px;"></div> <!-- Add vertical spacing -->
+                                <label for="exampleInputEmail1" style="margin-left: 15px;"><strong>Garanties</strong></label>
+                                <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                <table class="table"  style="margin-left: 15px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Id demande</th>
+                                            <th>Propriétaire</th>
+                                            <th>Valeur estimée</th>
+                                            <th>Type de garantie</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let garantie of garantie">
+                                            <td>{{garantie.idDemande}}</td>
+                                            <td>{{garantie.proprietaire}}</td>
+                                            <td>{{garantie.valeur_estime}}</td>
+                                            <td>{{garantie.type}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label class="required">Analyse des Garanties</label>
+                                    <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                    <textarea class="form-control" id="analyseGaranties" name="analyseGaranties" [(ngModel)]="analyserequest.analyseGaranties" [disabled]="!isStatutAnalyse()" required></textarea>
+                                </div>
+
+                                <div style="margin-bottom: 60px;"></div> <!-- Add vertical spacing -->
+
+                                <div *ngIf="demanded && demanded.typeClient === 'Client Particulier'" class="form-group" style="margin-left: 15px;">
+                                    <label >Salaire Net Mensuel</label>
+                                    <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                    <textarea class="form-control" id="analyseGaranties" name="analyseGaranties" disabled [(ngModel)]="demanded.salaireNetMensuel" ></textarea>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+
+                                <div *ngIf="demanded && demanded.typeClient === 'Client Entreprise'" class="form-group" style="margin-left: 15px;">
+                                    <label>Chiffre d'affaire mensuel</label>
+                                    <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                    <textarea class="form-control" id="analyseGaranties" name="analyseGaranties" disabled [(ngModel)]="demanded.chiffreAffaireMensuel" ></textarea>
+                                </div>
+
+                                
+                               
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label class="required">Analyse du Risque Commercial</label>
+                                    <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                    <textarea class="form-control" id="analyseRisqueCommercial" name="analyseRisqueCommercial" [(ngModel)]="analyserequest.analyseRisqueCommercial" [disabled]="!isStatutAnalyse()" required></textarea>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                            <div class="row">
+                                    <div class="col-md-5" style="margin-left: 15px;">
+                                    <div class="form-group">
+                                    <label class="required">Montant Proposé</label>
+                                    <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                    <input type="text" class="form-control" id="montantPropose" name="montantPropose" [(ngModel)]="analyserequest.montantPropose" [disabled]="!isStatutAnalyse()" required>
+                                </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                <div class="form-group" >
+                                    <label class="required">Taux d'Intérêt</label>
+                                    <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                    <input type="text" class="form-control" id="tautInteret" name="tautInteret" [(ngModel)]="analyserequest.tautInteret" [disabled]="!isStatutAnalyse()" required>
+                                </div>
+                                </div>
+
+                            </div>
+                            <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label class="required">Hypothèse</label>
+                                    <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                    <textarea class="form-control" id="hypothese" name="hypothese" [(ngModel)]="analyserequest.hypothese" [disabled]="!isStatutAnalyse()" required></textarea>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label class="required">Explication du Choix</label>
+                                    <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                    <textarea class="form-control" id="explicationChoix" name="explicationChoix" [(ngModel)]="analyserequest.explicationChoix" [disabled]="!isStatutAnalyse()" required></textarea>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label class="required">Avis sur la Stabilité du Client</label>
+                                    <div style="margin-bottom: 10px;"></div> <!-- Add vertical spacing -->
+                                    <textarea class="form-control" id="avisStabiliteClient" name="avisStabiliteClient" [(ngModel)]="analyserequest.avisStabiliteClient" [disabled]="!isStatutAnalyse()" required></textarea>
+                                </div>
+                                
+                                <div style="margin-bottom: 20px;"></div> <!-- Add vertical spacing -->
+                                <div class="form-group">
+                                    <button  type="submit" class="btn btn-info btn-fill" [disabled]="!isStatutAnalyse()" >Mettre à jour</button>
+                                  </div>
+                                  <div class="alert alert-success" *ngIf="successMessage">{{ successMessage }}</div>
+                                <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                            </form>
+                        
+                            <div class="clearfix"></div>
+                  
+                        </div>
+                    </div>
+                </div>
+    
+                
+    
+                <div class="col-md-4" style="margin-top: 20px;">
+                    <div class="col-md-4">
+                        <div class="card border-primary mb-3" style="width: 390px;">
+                            <div class="card-header" style="background-color: #b98137; color: white;">
+                                <h4 *ngIf="demanded && demanded.typeClient === 'Client Particulier'" class="title text-center">
+                                    Les informations du <a [routerLink]="['/nav/edit-client', demanded.idClientParticulier]" style="color: white;">client</a>
+                                </h4>
+                                <h4 *ngIf="demanded && demanded.typeClient === 'Client Entreprise'" class="title text-center">
+                                    Les informations du <a [routerLink]="['/nav/edit-clientEntreprise', demanded.idClientEntreprise]" style="color: white;">client</a>
+                                </h4>
+                            </div>
+                            <div class="card-body text-primary">
+                                <div *ngIf="demanded" class="title text-center" style="margin-bottom: 20px;">
+                                    <p class="card-text"><strong>Nom du Client:</strong> {{ demanded.nomClient }}</p>
+                                    <p class="card-text"><strong>Type du Client:</strong> {{ demanded.typeClient }}</p>
+                                    <p class="card-text"><strong>Identité Client:</strong> {{ demanded.identiteClient }}</p>
+                                    <p class="card-text"><strong>Nom Agence:</strong> {{ demanded.nomAgence }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-end" >
+                    <button type="button" class="btn btn-success" (click)="updatestatut(analyserequest.idDemande, 'Vérifications avant comité')" [disabled]="!isStatutAnalyse()" >Valider</button>
+
+                </div>
+        </div>
+    </div>
+</div>

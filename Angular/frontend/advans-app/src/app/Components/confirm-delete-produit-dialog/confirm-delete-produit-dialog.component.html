@@ -1,0 +1,11 @@
+<div style="background-color: white; color: black;  padding: 20px; " >
+
+    <h2 mat-dialog-title style="font-weight: bold; color: black;">Confirmation de suppression</h2>
+    <mat-dialog-content style="background-color: white; color: black; padding: 20px; border-radius: 20px;">Êtes-vous sûr de vouloir supprimer ce poduit ?</mat-dialog-content>
+    <mat-dialog-actions style="display: flex; justify-content: flex-end;">
+      <button mat-button style="margin-left: 10px;" style="background-color: rgb(136, 137, 139); color: rgb(248, 244, 244); padding: 20px; border-radius: 20px;" (click)="cancel()">Annuler</button>
+      <button mat-button color="warn" (click)="confirmDelete()" style="margin-left: 10px;" style="background-color: rgb(199, 41, 13); color: rgb(247, 244, 244); padding: 20px; border-radius: 20px;">Supprimer</button>
+    </mat-dialog-actions>
+    
+    
+    </div>

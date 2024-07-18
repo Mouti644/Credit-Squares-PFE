@@ -1,0 +1,32 @@
+.notifications-container {
+    max-width: 3000px; /* Ajustez selon vos besoins */
+    margin: 0 auto; /* Centrer le contenu horizontalement */
+    padding: 20px; /* Ajoutez un peu d'espace autour du contenu */
+    color:black;
+    background-color: #ffffff;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .read {
+    font-weight: normal;
+  }
+  
+  li {
+    list-style-type: none;
+    margin: 5px 0;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: -5px;
+    right: -15px;
+}
+
+  

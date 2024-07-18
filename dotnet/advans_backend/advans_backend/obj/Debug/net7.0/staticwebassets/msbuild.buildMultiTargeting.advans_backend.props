@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\advans_backend.props" />
+</Project>

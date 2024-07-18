@@ -1,0 +1,37 @@
+<div class="editreffamil-container">
+     <!-- Référents Familiaux -->
+     <div class="row">
+       
+        <div class="col-lg-4 mt-3" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="custom-heading-right"><strong>Référents Familiaux</strong></h2>
+                        <form #form="ngForm" (ngSubmit)="updateRefFamil()">
+                            <div class="mb-3">
+                                <label for="Nom" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="Nom" name="Nom" [(ngModel)]="addreferentFamiliauxrequest.nom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="prenom" class="form-label">Prénom</label>
+                                <input type="text" class="form-control" id="prenom" name="prenom" [(ngModel)]="addreferentFamiliauxrequest.prenom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="telephone" class="form-label">Téléphone</label>
+                                <input type="text" class="form-control" id="telephone" name="telephone" [(ngModel)]="addreferentFamiliauxrequest.telephone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="relation" class="form-label">Relation</label>
+                                <input type="text" class="form-control" id="relation" name="relation" [(ngModel)]="addreferentFamiliauxrequest.relation" required>
+                            </div>
+                           
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            <button type="button" class="btn btn-danger" (click)="deleteRefFamil(addreferentFamiliauxrequest.idRefFam!)">Supprimer le Référent</button>
+                        </form>
+                        <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+</div>
